@@ -11,11 +11,11 @@
 					<div class="row">
 						<div class="form-group col-md-4">
 							<label class="control-label" for="barcode">Barcode</label>
-							<input class="form-control" id="barcode" type="text" placeholder="Enter/Scan Barcode...">
+							<input class="form-control" id="barcode" type="text" placeholder={{item.barcode}} ng-model="item.barcode">
 						</div>
 						<div class="form-group col-md-8">
 							<label class="control-label" for="itemname">Name</label>
-							<input class="form-control" id="itename" type="text" placeholder="Enter Item Name...">
+							<input class="form-control" id="itename" type="text" placeholder="Enter Item Name..." ng-model="item.itemname">
 						</div>
 						<div class="form-group col-md-4">
 							<label class="control-label" for="costprice">Cost Price</label>
@@ -26,21 +26,44 @@
 							<input class="form-control" id="retailprice" type="text" placeholder="Retail Price...">
 						</div>
 						<div class="form-group col-md-4">
-							<label class="control-label" for="reorderlevel">Barcode</label>
-							<input class="form-control" id="reorderlevel" type="text" placeholder="Re-order level...">
+							<label class="control-label" for="itemlocation">Location</label>
+							<input class="form-control" id="itemlocation" type="text" placeholder="Re-order level...">
 						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-3">
+							<label for="unitofmeasure" >Unit Measure</label>
+							<select class="form-control" id="unitofmeasure">
+								<option>Bottle</option>
+								<option>Strip</option>
+								<option>Individual</option>
+								<option>Weight</option>
+							</select>
+						</div>	
+						<div class="form-group col-md-2">
+							<label class="control-label" for="packageunit">Package Unit</label>
+							<input class="form-control" id="packageunit" type="text" value=1>
+						</div>
+					</div>	
+					<div class="row">	
 						<div class="form-group col-md-8">
 							<label class="control-label" for="itemdescription">Description</label>
-							<textarea class="form-control" rows="5" id="itemdescription" placeholder="Enter/Scan Barcode..."></textarea>
+							<textarea class="form-control" rows="5" id="itemdescription" placeholder="Enter item description / notes..."></textarea>
 						</div>
 						<div class="form-group col-md-4">
 							<label class="control-label" for="currentstock">Current Stock</label>
 							<input class="form-control" id="currentstock" type="text" value="200" disabled>
 						</div>
+						<div class="form-group col-md-4">
+							<label class="control-label" for="itemlocation">Location</label>
+							<input class="form-control" id="itemlocation" type="text" placeholder="Item Location...">
+						</div>
+
 					</div>
 					<div class="row">
 						<div class="col-sm-8 col-sm-offset-5">
-							<a href="#" class="btn btn-success">Large button</a>
+							<button class="btn btn-success" ng-click="createItem(item)">Create Item</button>
+						    <button class="btn btn-primary" ng-click= "createItem()">Add Itemioooo</button>							
 						</div>	
 					</div>		
 				</div>
@@ -55,6 +78,14 @@
 			<li><a href="#items" data-toggle="tab">Profile</a></li>
 			<li><a>Disabled</a></li>
 		</ul>
+		<span ng-show="serverResponse">
+		<table class="table table-striped">
+		<tr ng-repeat= "item in serverResponse">
+			<td>{{item.item_id}}</td>
+			<td>{{item.item_name}}</td>
+		</tr>
+	</table>	
+		</span>	
 	  </div>	
   </div>			  
 </div>
