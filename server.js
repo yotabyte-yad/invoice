@@ -4,12 +4,16 @@ var app = express();
 var bodyParser = require('body-parser');
 
 ///DB Configuration
-var knex = require('knex')({
-  client: 'sqlite3',
-  connection: {
-    filename: "./book.sqlite"
-  }
-});
+// var knex = require('knex')({
+//   client: 'sqlite3',
+//   connection: {
+//     filename: "./book.sqlite"
+//   }
+// });
+
+var knex = require("./dbconfig.js").knex;
+
+var createItemInDB = require("./crud.js").createItemInDB;
 
 
 app.use(express.static(__dirname + '/public'));
@@ -23,12 +27,13 @@ app.get('/', function (req, res) {
 
 app.post('/createItem', function(req, res){
   console.log(req.body);
-  var pname = req.body.barcode;
-	console.log('Printing Name' + pname);
+  var item = {};
+  item.itemname = req.body.itemname;
+	console.log('Printing Name' + item);
   console.log(req.body.barcode);
   console.log(req.body.itemname);
   
-  
+  createItemInDB(item);
   
    knex.select().table('items')
     .then(function(rows) {
