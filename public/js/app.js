@@ -9,6 +9,10 @@ app.config(function($routeProvider) {
 		templateUrl: 'views/login/login.html',
 		controller: 'LoginCtrl'
   })
+   	.when('/logout', {
+		templateUrl: 'views/logout/logout.html',
+		controller: 'LogoutCtrl'		
+  })
   	.when('/profile', {
 		templateUrl: 'views/profile/profile.html',
 		controller: 'ProfileCtrl',
@@ -33,7 +37,7 @@ app.config(function($routeProvider) {
 var checkLogin = function ($q, $timeout, $http, $location, $rootScope) {
 	var deferred = $q.defer();
 
-	$http.get('/loggedin').success(function(user){
+	$http.get('/login').success(function(user){
 		$rootScope.errorMessage = null;
 		//User is already authenticated
 		if(user != 0){
