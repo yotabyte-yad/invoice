@@ -27,7 +27,11 @@ app.config(function($routeProvider) {
   })
     .when('/items', {
 		templateUrl: 'views/items/items.html',
-		controller: 'ItemsCtrl'
+		controller: 'ItemsCtrl',
+		resolve: {
+			//function to check if the person is logged in 
+			logincheck: checkLogin
+		}
   })
   	.otherwise({
 		redirectTo: '/home'
@@ -45,6 +49,7 @@ var checkLogin = function ($q, $timeout, $http, $location, $rootScope) {
 			deferred.resolve();
 		}
 		else {
+			$rootScope.currentUser = undefined;
 			$rootScope.errorMessage = 'You need to Log in';
 			deferred.reject();
 			$location.url('/login');

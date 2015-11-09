@@ -68,7 +68,9 @@
 		</div>
 	</div>
 	</nav>			
-	User logged in: {{currentUser}}	
+	<span ng-show="currentUser">
+		User logged in: {{currentUser}}
+	</span>		
 	<div ng-view>
 	</div>
 </body>
