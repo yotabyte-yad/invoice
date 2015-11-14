@@ -26,7 +26,7 @@ app.config(function($routeProvider) {
 		controller: 'RegisterCtrl'
   })
     .when('/purchase', {
-		templateUrl: 'views/purchase/purchase.html',
+		templateUrl: 'views/purchase/PurchaseAutocomplete.html',
 		controller: 'PurchaseCtrl'
   })
   	.when('/supplier', {
@@ -74,4 +74,13 @@ app.controller("NavCtrl", function($rootScope, $scope, $http, $location){
 				$location.url("/home");
 			});
 	}
+});
+
+
+app.controller('autoCompleteController', [ '$scope', function($scope){
+	
+}]);
+
+app.directive('autoCompleteDirective', function(){
+	
 });
