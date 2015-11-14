@@ -29,6 +29,10 @@ app.config(function($routeProvider) {
 		templateUrl: 'views/purchase/purchase.html',
 		controller: 'PurchaseCtrl'
   })
+  	.when('/supplier', {
+		templateUrl: 'views/supplier/supplier.html',
+		controller: 'SupplierCtrl'
+  })
     .when('/items', {
 		templateUrl: 'views/items/items.html',
 		controller: 'ItemsCtrl',
