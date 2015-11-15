@@ -21,8 +21,13 @@ sequelize = new Sequelize(undefined, undefined, undefined, {
 
 var db = {};
 
-db.suppliers = sequelize.import(__dirname + '/models/suppliers.js');
-db.todos = sequelize.import(__dirname + '/models/todo.js');
+db.suppliers        = sequelize.import(__dirname + '/models/suppliers.js');
+db.todos            = sequelize.import(__dirname + '/models/todo.js');
+db.purchases        = sequelize.import(__dirname + '/models/purchases.js');
+db.purchase_details = sequelize.import(__dirname + '/models/purchase_details.js');
+
+db.purchases.hasMany(db.purchase_details, {as: 'details'});
+
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 

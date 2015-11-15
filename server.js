@@ -118,10 +118,12 @@ app.get('/suppliers', function(req, res){
 
 
 	db.suppliers.findAll({
-		 where : { active: true}
+		 attributes : ['name']
 	})
 		.then(function(suppliers){
+		
 		res.json(suppliers);
+		
 		console.log(suppliers.description);
 	}, function(e){
 		res.status(500).send('Error in Find all   :' + e);
@@ -180,7 +182,7 @@ app.put ('/suppliers/:id', function(req, res){
 });
 
 
-db.sequelize.sync().then(function(){	
+db.sequelize.sync({force: true}).then(function(){	
 		var server = app.listen(3000, function () {
 		var host = server.address().address;
 		var port = server.address().port;

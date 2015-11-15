@@ -1,9 +1,9 @@
 //Test 
-app.controller("PurchaseCtrl", function ($location, $scope, $http, $rootScope){
-	console.log("clicked PurchaseCtrl");
+app.controller("ItemsCtrl", function ($location, $scope, $http, $rootScope){
+	console.log("clicked ItemsCtrl");
 	
 	$scope.createItem = function(){
-		console.log("within Purchase Items");	
+		console.log("within ItemsCtrl Items");	
 		console.log($scope.item);
 		$http.post('/createPurchase', $scope.item).success(function(response){
 			console.log(response);
