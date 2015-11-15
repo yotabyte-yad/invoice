@@ -13,6 +13,14 @@ var session = require('express-session');
 var _ = require('underscore');
 var db = require('./db.js');
 
+///DB Configuration
+// var knex = require('knex')({
+//   client: 'sqlite3',
+//   connection: {
+//     filename: "./book.sqlite"
+//   }
+// });
+
 var knex = require("./dbconfig.js").knex;
 
 var createItemInDB = require("./crud.js").createItemInDB;
@@ -37,6 +45,13 @@ passport.use(new LocalStrategy(
 			}
 			return done(null, false, {message:'Unable to login'});
     });
+    // sqldb.each("SELECT username, password, roles FROM users where username = ?",[username], function(err, user) {
+    //     //console.log(rows.username + ": " + rows.password);
+    //     if(user){
+		// 		return done(null, user);
+		// 	}
+		// 	return done(null, false, {message:'Unable to login'});
+    // });
 }));
 
 passport.serializeUser(function(user, done){
@@ -99,6 +114,20 @@ app.get("/items", auth, function (req, res){
 });
 
 
+
+// app.post('/createItem', function(req, res){
+// 	console.log("Request itemid " + req.body);
+    
+//     // knex.select().table('items')
+//     // .then(function(rows) {
+//     //   //console.log(rows);
+//     //   res.json(rows);
+//     // })
+//     // .catch(function(error) {
+//     //   console.error(error)
+//     // });
+// });
+
 app.get("/rest/user", auth, function(req, res){
       var allusers = knex.select('username').from('users').then (function(rows){res.send(rows)});
 });
@@ -109,6 +138,26 @@ app.get("/logout", function (req, res){
 	res.send(200);
 
 });
+
+			/*
+			db.sequelize.query("SELECT * FROM suppliers ", { type: db.sequelize.QueryTypes.SELECT})
+			.then(function(suppliers) {
+				res.json(suppliers);
+				console.log(suppliers);
+			})
+			
+						// if(query.hasOwnProperty('completed') && query.completed === 'true')	{
+			// 	where.completed = true;
+			// } else if(query.hasOwnProperty('completed') && query.completed === 'false') {
+			// 	where.completed = false;
+			// }
+		
+			// if(query.hasOwnProperty('q') && query.q.length > 0){
+			// 	where.description = {
+			// 		$like: '%' + query.q + '%'
+			// 	};
+			// }
+			*/
 
 //GET all the suppliers
 app.get('/suppliers', function(req, res){
@@ -149,36 +198,6 @@ app.post('/suppliers', function(req, res){
 });
 
 
-// PUT /suppliers/:id
-app.put ('/suppliers/:id', function(req, res){
-	var supplierId = parseInt(req.params.id);
-	var body = _.pick(req.body, 'name', 'address', 'state','pincode', 'active');
-	var validAttributes = {};
-
-	if(body.hasOwnProperty('completed') && _.isBoolean(body.completed)){
-		validAttributes.completed = body.completed;
-	} else if(body.hasOwnProperty('completed')) {
-		// Bad
-		return res.status(400).send('Error is delete.... property --> completed');
-	} else {
-		// Never provided Attribute, no problem here
-	}
-
-	if(body.hasOwnProperty('description') && _.isString(body.description) && body.description.trim().length > 0){
-		validAttributes.description = body.description;
-	} else if(body.hasOwnProperty('description')) {
-		// Bad
-		return res.status(400).send('Error is delete.... property --> description');
-	}
-
-	///Doing actual update of the values as Objects are passed by Reference
-	/// No need to explicitly update the TODO object array
-	_.extend(matchedTodo, validAttributes);
-	res.json(matchedTodo);
-
-
-});
-
 
 db.sequelize.sync().then(function(){	
 		var server = app.listen(3000, function () {
@@ -189,32 +208,10 @@ db.sequelize.sync().then(function(){
 });
 
 
-/*
-db.sequelize.query("SELECT * FROM suppliers ", { type: db.sequelize.QueryTypes.SELECT})
-.then(function(suppliers) {
-	res.json(suppliers);
-	console.log(suppliers);
-})
-
-			// if(query.hasOwnProperty('completed') && query.completed === 'true')	{
-// 	where.completed = true;
-// } else if(query.hasOwnProperty('completed') && query.completed === 'false') {
-// 	where.completed = false;
-// }
-
-// if(query.hasOwnProperty('q') && query.q.length > 0){
-// 	where.description = {
-// 		$like: '%' + query.q + '%'
-// 	};
-// }
-*/
-
 // db.sequelize.sync().then(function(){
 // 		app.listen (PORT, function(){
 // 		console.log('Express listening on port: ' + PORT);
 // 	});
 // });
-
-
 
 

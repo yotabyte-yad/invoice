@@ -81,6 +81,16 @@ app.controller('autoCompleteController', [ '$scope', function($scope){
 	
 }]);
 
-app.directive('autoCompleteDirective', function(){
-	
+app.directive('autoCompleteDirective', function($http){
+	return {
+		restrict:'A',
+		scope: [],
+		link: function(scope, elm, attrs){
+			elm.autocomplete({
+				source : function(request, response){
+					$http
+				}
+			})
+		}
+	}
 });
