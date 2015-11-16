@@ -9,15 +9,19 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.INTEGER,
 			allowNull: true
 		},
+		item_mfg: {
+			type: DataTypes.STRING,
+			allowNull: true
+		},
+		item_sch: {
+			type: DataTypes.STRING,
+			allowNull: true
+		},
 		item_uom: {
 			type: DataTypes.STRING,
 			allowNull: true
 		},
 		item_description: {
-			type: DataTypes.STRING,
-			allowNull: true
-		},
-		item_location: {
 			type: DataTypes.STRING,
 			allowNull: true
 		},
@@ -41,14 +45,6 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.DECIMAL(15, 2),
 			allowNull: true
 		},
-		item_batch: {
-			type: DataTypes.STRING,
-			allowNull: true
-		},
-		item_exp: {
-			type: DataTypes.DATE,
-			allowNull: true
-		},
 		tax_per: {
 			type: DataTypes.DECIMAL(6, 2),
 			allowNull: true
@@ -57,7 +53,7 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.DECIMAL(15, 2),
 			allowNull: true
 		},
-		item_qty: {
+		item_qty_balance: {
 			type: DataTypes.INTEGER,
 			allowNull: true
 		}		

@@ -80,6 +80,22 @@ app.post('/createItem', function(req, res){
 // 	console.log('Printing Name' + item);
 //   console.log(req.body.barcode);
 //   console.log(req.body.itemname);
+
+
+	var body = _.pick(req.body, 'email', 'password');
+	
+	body.email = body.email.trim();
+	body.password = body.password.trim();
+
+	console.log(body);
+	res.send(body);
+	
+	// db.user.create(body).then(function(todo){
+	// 	res.json(todo.toPublicJSON());
+	// }, function(e){
+	// 	res.status(400).json(e);
+	// 	console.log('Error creating user: ' + e);
+	// });
   
 }); 
 
@@ -171,7 +187,7 @@ app.put ('/suppliers/:id', function(req, res){
 });
 
 
-db.sequelize.sync({force: false}).then(function(){	
+db.sequelize.sync({force: true}).then(function(){	
 		var server = app.listen(3000, function () {
 		var host = server.address().address;
 		var port = server.address().port;
