@@ -26,20 +26,20 @@ app.config(function($routeProvider) {
 		controller: 'RegisterCtrl'
   })
     .when('/purchase', {
-		templateUrl: 'views/purchase/PurchaseAutocomplete.html',
+		templateUrl: 'views/purchase/purchase.html',
 		controller: 'PurchaseCtrl'
   })
   	.when('/supplier', {
 		templateUrl: 'views/supplier/supplier.html',
 		controller: 'SupplierCtrl'
   })
+    .when('/sales', {
+		templateUrl: 'views/sales/sales.html',
+		controller: 'SalesCtrl'
+  })  
     .when('/items', {
 		templateUrl: 'views/items/items.html',
-		controller: 'ItemsCtrl',
-		resolve: {
-			//function to check if the person is logged in 
-			logincheck: checkLogin
-		}
+		controller: 'ItemsCtrl'
   })
   	.otherwise({
 		redirectTo: '/home'

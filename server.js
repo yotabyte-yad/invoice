@@ -75,22 +75,11 @@ app.post("/login", upload.array(), passport.authenticate('local'), function (req
 
 app.post('/createItem', function(req, res){
   console.log(req.body);
-  var item = {};
-  item.itemname = req.body.itemname;
-	console.log('Printing Name' + item);
-  console.log(req.body.barcode);
-  console.log(req.body.itemname);
-  
-  createItemInDB(item);
-  
-   knex.select().table('items')
-    .then(function(rows) {
-      console.log(rows);
-      res.json(rows);
-    })
-    .catch(function(error) {
-      console.error(error)
-    });
+//   var item = {};
+//   item.itemname = req.body.itemname;
+// 	console.log('Printing Name' + item);
+//   console.log(req.body.barcode);
+//   console.log(req.body.itemname);
   
 }); 
 
@@ -182,7 +171,7 @@ app.put ('/suppliers/:id', function(req, res){
 });
 
 
-db.sequelize.sync({force: true}).then(function(){	
+db.sequelize.sync({force: false}).then(function(){	
 		var server = app.listen(3000, function () {
 		var host = server.address().address;
 		var port = server.address().port;

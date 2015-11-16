@@ -27,11 +27,11 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		gross_amount: {
 			type: DataTypes.DECIMAL(6, 2),
-			allowNull: false
+			allowNull: true
 		},
 		net_amount: {
 			type: DataTypes.DECIMAL(6, 2),
-			allowNull: false
+			allowNull: true
 		}
 	}); 
 };
