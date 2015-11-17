@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true
 		},
 		item_name: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.STRING,
 			allowNull: true
 		},
 		item_mfg: {

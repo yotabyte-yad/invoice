@@ -99,8 +99,26 @@ app.post('/createItem', function(req, res){
   
 }); 
 
-app.get("/items", auth, function (req, res){
-	res.send(req.isAuthenticated() ? req.user : '0');
+//GET all the items
+app.get("/items", function (req, res){
+	var query = req.query;
+	var where = {};
+	
+	if(query.hasOwnProperty('q') && query.q.length > 0){
+		where.item_name = {
+			$like: '%' + query.q + '%'
+		};
+	}
+	
+	db.items.findAll({
+		attributes: ['item_name'],
+		where: where
+	
+	}).then(function(items){
+		res.json(items);
+	}, function(e){
+		res.status(500).send('Error in Finding all the items: ' + e);
+	});
 });
 
 
