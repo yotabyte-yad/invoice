@@ -1,0 +1,178 @@
+<style>
+th {background-color: #1a6ecc;
+    color: white;
+   }
+tr {
+        line-height: 25px;
+    }
+table {
+  white-space: normal;
+  line-height: normal;
+  font-weight: normal;
+  font-size: small;
+  font-variant: normal;
+  font-style: normal;
+  color: -webkit-text;
+  text-align: start;
+}       
+</style>
+
+<div class="panel panel-default col-md-11 col-offset-1">
+  <div class="panel-body">
+    <div class="row">
+      <div class="form-group col-md-2">
+        <label for="billno">Bill No:</label>
+        <input type="text" class="form-control" id="billno" ng-model="bill_header.billno">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="date">Date:</label>
+        <input type="text" class="form-control" id="date" ng-model="bill_header.date">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="patient">Patient Name:</label>
+        <input type="text" class="form-control" id="patient" ng-model="bill_header.patient">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="doctor">Doctor Name:</label>
+        <input type="text" class="form-control" id="doctor" ng-model="bill_header.doctor">
+      </div>
+    </div>
+    <div class="row">  
+      <div class="form-group col-md-6">
+        <label for="itemname">Item Name:</label>
+        <input type="text" class="form-control" id="itemname" ng-model="item_row.itemname">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="batch">Batch</label>
+        <input type="text" class="form-control" id="batch" ng-model= "test_variable">
+      </div>
+      <div class="form-group col-md-1">
+        <label for="qty">Qty</label>
+        <input type="text" class="form-control" id="qty">
+      </div>
+      <div class="form-group col-md-1">
+        <label for="tax">Tax</label>
+        <input type="text" class="form-control" id="tax">
+      </div>
+       <div class="form-group col-md-1">
+        <label for="expdate">Exp Date</label>
+        <input type="text" class="form-control" id="expdate" disabled>
+      </div>
+      <label for="batch">Add to Bill</label>
+      <button class="btn btn-success" ng-click="addItemRow()">
+                    <i class="glyphicon glyphicon-ok" />
+      </button>
+    </div>  
+  </div>
+</div>
+
+
+  
+   <div class="panel1 panel1-default col-md-11 col-offset-1">
+
+      <table class="table table-bordered warning">
+        <thead>
+          <tr>
+            <th class="col-lg-4">
+              Item Name
+            </th>
+            <th class="col-lg-1">
+              Batch
+            </th>
+            <th class="col-lg-1"> 
+              Exp. Date
+            </th>
+            <th class="col-lg-1">
+              Quantity
+            </th>
+            <th class="col-lg-1">
+              Tax
+            </th>
+            <th class="col-lg-1">
+              Price
+            </th>
+            <th class="col-lg-1">
+              Amount
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Allegra 120MG</td>
+            <td class="text-left">A1500060</td>
+            <td class="text-right">MAR 2015</td>
+            <td class="text-right"><input type="text" class="form-control input-sm-yb text-right" id="tax"></td>
+            <td class="text-right">5.5%</td>
+            <td class="text-right">&#8377; 200.00</td>
+            <td class="text-right">&#8377; 200.00</td>
+          </tr>
+          <tr>
+            <td>DOLO 650MG</td>
+            <td class="text-left">A1500060</td>
+            <td class="text-right">MAR 2015</td>
+            <td class="text-right"><input type="text" class="form-control input-sm-yb  text-right" id="tax"></td>
+            <td class="text-right">5.5%</td>
+            <td class="text-right">&#8377; 200.00</td>
+            <td class="text-right">&#8377; 200.00</td>
+          </tr>
+          <tr>
+            <td>HONITUS SYRUP 250ML</td>
+            <td class="text-left">A1500060</td>
+            <td class="text-right">MAR 2015</td>
+            <td class="text-right"><input type="text" class="form-control input-sm-yb  text-right" id="tax"></td>
+            <td class="text-right">5.5%</td>
+            <td class="text-right">&#8377; 200.00</td>
+            <td class="text-right">&#8377; 200.00</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row text-right">
+        <div class="col-xs-2 col-xs-offset-8">
+          <p>
+            <strong>
+            Sub Total : <br>
+            VAT 5.5% : <br>
+            VAT 7.5% : <br>
+            Total : <br>
+            </strong>
+          </p>
+        </div>
+        <div class="col-xs-2">
+          <strong>
+          &#8377; 1200.00 <br>
+          N/A <br>
+          &#8377; 1200.00 <br>
+          </strong>
+        </div>
+      </div>      
+    </div>
+
+    <table class="">  
+      <div class="form-group col-md-2">
+        <label for="billno">Bill No:</label>
+        <input type="text" class="form-control" id="billno" ng-model="bill_header.billno">
+      </div>
+      <td><div class="form-group col-md-2">
+        <label for="date">Date:</label>
+        <input type="text" class="form-control" id="date" ng-model="bill_header.date">
+      </div></td>
+      <td><div class="form-group col-md-3">
+        <label for="patient">Patient Name:</label>
+        <input type="text" class="form-control" id="patient" ng-model="bill_header.patient">
+      </div></td>
+      <td><div class="form-group col-md-3">
+        <label for="doctor">Doctor Name:</label>
+        <input type="text" class="form-control" id="doctor" ng-model="bill_header.doctor">
+      </div></td>
+    </table> 
+    
+    
+    <table border="1" width="100%">
+<caption>This is the caption</caption>
+<tr>
+<td>row 1, column 1</td><td>row 1, columnn 2</td>
+</tr>
+<tr>
+<td>row 2, column 1</td><td><input type="text" class="form-control" id="doctor" ng-model="bill_header.doctor"></td>
+</tr>
+</table>

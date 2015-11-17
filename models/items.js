@@ -45,15 +45,15 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.DECIMAL(15, 2),
 			allowNull: true
 		},
-		tax_per: {
+		item_tax_per: {
 			type: DataTypes.DECIMAL(6, 2),
 			allowNull: true
 		},
-		tax_amt: {
+		item_tax_amt: {
 			type: DataTypes.DECIMAL(15, 2),
 			allowNull: true
 		},
-		item_qty_balance: {
+		item_balance_qty: {
 			type: DataTypes.INTEGER,
 			allowNull: true
 		}		
