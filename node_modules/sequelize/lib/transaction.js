@@ -122,10 +122,14 @@ Transaction.LOCK = Transaction.prototype.LOCK = {
 /**
  * Commit the transaction
  *
- * @return {this}
+ * @return {Promise}
  */
 Transaction.prototype.commit = function() {
   var self = this;
+
+  if (this.finished) {
+    throw new Error('Transaction cannot be committed because it has been finished with state: ' + self.finished);
+  }
 
   this.$clearCls();
 
@@ -145,10 +149,14 @@ Transaction.prototype.commit = function() {
 /**
  * Rollback (abort) the transaction
  *
- * @return {this}
+ * @return {Promise}
  */
 Transaction.prototype.rollback = function() {
   var self = this;
+
+  if (this.finished) {
+    throw new Error('Transaction cannot be rolled back because it has been finished with state: ' + self.finished);
+  }
 
   this.$clearCls();
 
@@ -180,6 +188,10 @@ Transaction.prototype.prepareEnvironment = function() {
     return self.setIsolationLevel();
   }).then(function () {
     return self.setAutocommit();
+  }).catch(function (setupErr) {
+    return self.rollback().finally(function () {
+      throw setupErr;
+    });
   }).tap(function () {
     if (self.sequelize.constructor.cls) {
       self.sequelize.constructor.cls.set('transaction', self);
@@ -218,9 +230,9 @@ Transaction.prototype.setIsolationLevel = function() {
 };
 
 Transaction.prototype.cleanup = function() {
+  var res = this.sequelize.connectionManager.releaseConnection(this.connection);
   this.connection.uuid = undefined;
-
-  return this.sequelize.connectionManager.releaseConnection(this.connection);
+  return res;
 };
 
 Transaction.prototype.$clearCls = function () {

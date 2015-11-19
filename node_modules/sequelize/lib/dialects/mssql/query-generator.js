@@ -170,7 +170,7 @@ var QueryGenerator = {
   },
 
   removeColumnQuery: function(tableName, attributeName) {
-    var query = 'ALTER TABLE <%= tableName %> DROP <%= attributeName %>;';
+    var query = 'ALTER TABLE <%= tableName %> DROP COLUMN <%= attributeName %>;';
     return Utils._.template(query)({
       tableName: this.quoteTable(tableName),
       attributeName: this.quoteIdentifier(attributeName)
@@ -586,7 +586,7 @@ var QueryGenerator = {
     if (options.limit || options.offset) {
       if (!options.order || (options.include && !subQueryOrder.length)) {
         fragment += (options.order && !isSubQuery) ? ', ' : ' ORDER BY ';
-        fragment += this.quoteIdentifier(model.primaryKeyAttribute);
+        fragment += this.quoteIdentifier(model.primaryKeyField);
       }
 
       if (options.offset || options.limit) {

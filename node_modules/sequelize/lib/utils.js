@@ -6,7 +6,8 @@ var DataTypes = require('./data-types')
   , parameterValidator = require('./utils/parameter-validator')
   , inflection = require('inflection')
   , uuid = require('node-uuid')
-  , deprecate = require('depd')('Utils');
+  , deprecate = require('depd')('Utils')
+  , primitives = ['string', 'number', 'boolean'];
 
 var Utils = module.exports = {
   inflection: inflection,
@@ -28,6 +29,9 @@ var Utils = module.exports = {
     }
 
     return result;
+  },
+  isPrimitive: function (val) {
+    return primitives.indexOf(typeof val) !== -1;
   },
   // Same concept as _.merge, but don't overwrite properties that have already been assigned
   mergeDefaults: function (a, b) {
@@ -76,9 +80,26 @@ var Utils = module.exports = {
     });
   },
 
+  /* Expand and normalize finder options */
+  mapFinderOptions: function(options, Model) {
+    if (Model._hasVirtualAttributes && Array.isArray(options.attributes)) {
+      options.attributes.forEach(function (attribute) {
+        if (Model._isVirtualAttribute(attribute) && Model.rawAttributes[attribute].type.fields) {
+          options.attributes = options.attributes.concat(Model.rawAttributes[attribute].type.fields);
+        }
+      }.bind(Model));
+      options.attributes = _.without.apply(_, [options.attributes].concat(Model._virtualAttributes));
+      options.attributes = _.unique(options.attributes);
+    }
+
+    Utils.mapOptionFieldNames(options, Model);
+
+    return options;
+  },
+
   /* Used to map field names in attributes and where conditions */
   mapOptionFieldNames: function(options, Model) {
-    if (options.attributes) {
+    if (Array.isArray(options.attributes)) {
       options.attributes = options.attributes.map(function(attr) {
         // Object lookups will force any variable to strings, we don't want that for special objects etc
         if (typeof attr !== 'string') return attr;
@@ -90,45 +111,45 @@ var Utils = module.exports = {
       });
     }
 
-    if (options.where) {
-      var attributes = options.where
-        , attribute
-        , rawAttribute;
+    if (options.where && _.isPlainObject(options.where)) {
+      options.where = Utils.mapWhereFieldNames(options.where, Model);
+    }
 
-      if (options.where instanceof Utils.and || options.where instanceof Utils.or) {
-        attributes = undefined;
-        options.where.args = options.where.args.map(function (where) {
-          return Utils.mapOptionFieldNames({
-            where: where
+    return options;
+  },
+
+  mapWhereFieldNames: function (attributes, Model) {
+    var attribute
+      , rawAttribute;
+
+    if (attributes) {
+      for (attribute in attributes) {
+        rawAttribute = Model.rawAttributes[attribute];
+
+        if (rawAttribute && rawAttribute.field !== rawAttribute.fieldName) {
+          attributes[rawAttribute.field] = attributes[attribute];
+          delete attributes[attribute];
+        }
+
+        if (_.isPlainObject(attributes[attribute])) {
+          attributes[attribute] = Utils.mapOptionFieldNames({
+            where: attributes[attribute]
           }, Model).where;
-        });
-      }
+        }
 
-      if (attributes) {
-        for (attribute in attributes) {
-          rawAttribute = Model.rawAttributes[attribute];
-          if (rawAttribute && rawAttribute.field !== rawAttribute.fieldName) {
-            attributes[rawAttribute.field] = attributes[attribute];
-            delete attributes[attribute];
-          }
+        if (Array.isArray(attributes[attribute])) {
+          attributes[attribute] = attributes[attribute].map(function (where) {
+            if (_.isPlainObject(where)) {
+              return Utils.mapWhereFieldNames(where, Model);
+            }
 
-          if (_.isPlainObject(attributes[attribute])) {
-            attributes[attribute] = Utils.mapOptionFieldNames({
-              where: attributes[attribute]
-            }, Model).where;
-          }
-
-          if (Array.isArray(attributes[attribute])) {
-            attributes[attribute] = attributes[attribute].map(function (where) {
-              return Utils.mapOptionFieldNames({
-                where: where
-              }, Model).where;
-            });
-          }
+            return where;
+          });
         }
       }
     }
-    return options;
+
+    return attributes;
   },
 
   /* Used to map field names in values */
@@ -148,6 +169,11 @@ var Utils = module.exports = {
 
     return values;
   },
+
+  isColString: function(value) {
+    return typeof value === 'string' && value.substr(0, 1) === '$' && value.substr(value.length - 1, 1) === '$';
+  },
+
   argsArePrimaryKeys: function(args, primaryKeys) {
     var result = (args.length === Object.keys(primaryKeys).length);
     if (result) {
@@ -168,7 +194,7 @@ var Utils = module.exports = {
       if (treatAsAnd) {
         return treatAsAnd;
       } else {
-        return !(arg instanceof Date) && ((arg instanceof Utils.and) || (arg instanceof Utils.or) || Utils._.isPlainObject(arg));
+        return Utils._.isPlainObject(arg);
       }
     }, false);
   },
@@ -342,14 +368,6 @@ var Utils = module.exports = {
     this.val = val;
   },
 
-  and: function(args) {
-    this.args = args;
-  },
-
-  or: function(args) {
-    this.args = args;
-  },
-
   json: function(conditionsOrPath, value) {
     if (Utils._.isObject(conditionsOrPath)) {
       this.conditions = conditionsOrPath;
@@ -386,8 +404,6 @@ var Utils = module.exports = {
   }
 };
 
-Utils.and.prototype._isSequelizeMethod =
-Utils.or.prototype._isSequelizeMethod =
 Utils.where.prototype._isSequelizeMethod =
 Utils.literal.prototype._isSequelizeMethod =
 Utils.cast.prototype._isSequelizeMethod =
