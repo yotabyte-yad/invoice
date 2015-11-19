@@ -2,6 +2,7 @@
 app.controller("SalesCtrl", function ($scope, $http){
  	console.log("Test Sales");
 	 $scope.test_variable = 'Yadnyesh';
+	 $scope.bill = '';
 	 $scope.bill_header = '';
 	 $scope.bill.item_row = '';
 	 $scope.bill.item_list = [];

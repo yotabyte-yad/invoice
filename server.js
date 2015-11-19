@@ -5,7 +5,7 @@ var multer = require('multer');
 var upload = multer();
 
 var knex      = require('./db').knex;
-var passport = require('Passport');
+var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -73,7 +73,7 @@ app.post("/login", upload.array(), passport.authenticate('local'), function (req
 
   ///Extracting Item values in request body
 
-app.post('/createItem', function(req, res){
+app.post('/item', function(req, res){
   console.log(req.body);
 //   var item = {};
 //   item.itemname = req.body.itemname;
@@ -81,14 +81,15 @@ app.post('/createItem', function(req, res){
 //   console.log(req.body.barcode);
 //   console.log(req.body.itemname);
 
-
-	var body = _.pick(req.body, 'email', 'password');
-	
-	body.email = body.email.trim();
-	body.password = body.password.trim();
-
+	var body = _.pick(req.body, 'item_name', 'item_mfg', 'item_sch', 
+								'item_reorder_level', 'item_reorder_qty' );
 	console.log(body);
-	res.send(body);
+	res.json(body);
+	// body.email = body.email.trim();
+	// body.password = body.password.trim();
+
+	// console.log(body);
+	// res.send(body);
 	
 	// db.user.create(body).then(function(todo){
 	// 	res.json(todo.toPublicJSON());
@@ -123,7 +124,7 @@ app.get("/items", function (req, res){
 
 
 app.get("/rest/user", auth, function(req, res){
-      var allusers = knex.select('username').from('users').then (function(rows){res.send(rows)});
+      //var allusers = knex.select('username').from('users').then (function(rows){res.send(rows)});
 });
 
 app.get("/logout", function (req, res){
@@ -135,7 +136,7 @@ app.get("/logout", function (req, res){
 
 //GET all the suppliers
 app.get('/suppliers', function(req, res){
-	var query = req.query;
+	//var query = req.query;
 	var where = {};
 		where.active = true;
 
@@ -176,7 +177,7 @@ app.post('/suppliers', function(req, res){
 
 // PUT /suppliers/:id
 app.put ('/suppliers/:id', function(req, res){
-	var supplierId = parseInt(req.params.id);
+	//var supplierId = parseInt(req.params.id);
 	var body = _.pick(req.body, 'name', 'address', 'state','pincode', 'active');
 	var validAttributes = {};
 
@@ -205,7 +206,7 @@ app.put ('/suppliers/:id', function(req, res){
 });
 
 
-db.sequelize.sync({force: true}).then(function(){	
+db.sequelize.sync({force: false}).then(function(){	
 		var server = app.listen(5000, function () {
 		var host = server.address().address;
 		var port = server.address().port;

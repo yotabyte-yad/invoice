@@ -1,13 +1,21 @@
 //Test 
 app.controller("ItemsCtrl", function ($location, $scope, $http, $rootScope){
-	console.log("clicked ItemsCtrl");
+	//console.log("clicked ItemsCtrl");
+	$scope.item = {};
+	$scope.item.item_name = 'Change';
+	$scope.item.item_mfg = 'Comp Change';
+	$scope.item.item_sch = 'N';
+	$scope.item.item_reorder_level = 0;
+	$scope.item.item_reorder_qty = 0;
+	$scope.item.item_description = 'Enter comments';
 	
-	$scope.createItem = function(){
+	$scope.createItem = function(item){
 		console.log("within ItemsCtrl Items");	
 		console.log($scope.item);
-		$http.post('/createItem', $scope.item).success(function(response){
+		$http.post('/item', $scope.item).success(function(response){
+			console.log('Server Response: ' );
 			console.log(response);
-			$scope.serverResponse = response;
+			//$scope.serverResponse = response;
 				
 	});
    };	
