@@ -34,7 +34,7 @@ app.config(function($routeProvider) {
 		controller: 'SupplierCtrl'
   })
     .when('/sales', {
-		templateUrl: 'views/sales/typeahead.html',
+		templateUrl: 'views/sales/sales.html',
 		controller: 'SalesCtrl'
   })  
     .when('/items', {
