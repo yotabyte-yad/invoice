@@ -1,38 +1,83 @@
-<div class="container">
-  
-  
-  
-</div>  
-<table id="mainTable" class="table" style="cursor: pointer;">
-            <thead><tr><th>Name</th><th>Cost</th><th>Profit</th><th>Fun</th></tr></thead>
-            <tbody>
-              <tr><td tabindex="1">Car</td><td tabindex="1">100</td><td tabindex="1">200</td><td tabindex="1">0</td></tr>
-              <tr><td tabindex="1">Bike</td><td tabindex="1">330</td><td tabindex="1">240</td><td tabindex="1">1</td></tr>
-              <tr><td tabindex="1">Plane</td><td tabindex="1">430</td><td tabindex="1">540</td><td tabindex="1">3</td></tr>
-              <tr><td tabindex="1">Yacht</td><td tabindex="1">100</td><td tabindex="1">200</td><td tabindex="1">0</td></tr>
-              <tr><td tabindex="1">Segway</td><td tabindex="1">330</td><td tabindex="1">240</td><td tabindex="1">1</td></tr>
-            </tbody>
-			      <tfoot>
-               <tr><th><strong>TOTAL</strong></th><th>1290</th><th>1420</th><th>5</th></tr>
-            </tfoot>
-</table>
-    <div class="bs-example">
-        <input id="type-ahead1" type="text" class="form-control" >
-    </div>
-</div>
- <script>
-  //$('#table').editableTableWidget();
-  $('#mainTable').editableTableWidget({ editor: $('<input>'), preventColumns: [ 1, 2, 4 ] }).numericInputExample();
-  
-   $(document).ready(function(){
-	   console.log('typeahead');
-      $('#type-ahead1').typeahead({
-        local: ['Audi', 'BMW', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Volkswagen']
-      });
-    });  
-  
-</script>
+      
 
+ 
+ <pre>{{billModel | json}}</pre>  
+ 
+
+ 
+ 
+   <div class="form-group">
+        <input type="text" class="form-control" ng-model="selectedState" bs-options="state for state in states" placeholder="Enter state" bs-typeahead>
+   </div>
+
+<hr>
+      
+  <div class="container main-content col-md-12" id = "yadDiv">
+  
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <form>     
+
+              <div class="col-md-1">
+                  <label for="billno"><b>Bill No</b></label>
+                  <input type="text"
+                         class="form-control" 
+                         id="billno"  
+                         value="" disabled>
+              </div> 
+              <div class="col-md-2">
+                <label class="control-label" for="billdate"><b>Bill Date</b></label>
+                <input type="text"
+                       class="form-control" 
+                       id="billdate"  
+                       ng-model = "billModel.billdate" 
+                       bs-datepicker>
+              </div> 
+              <div class="col-md-4">
+                <label class="control-label" for="patientname"><b>Patient</b></label>
+                <input type="text"
+                       class="form-control" 
+                       id="patientname"  
+                       ng-model = "billModel.patient">
+              </div>
+              <div class="col-md-5">
+                <label class="control-label" for="doctorname"><b>Doctor</b></label>
+                <input type="text"
+                       class="form-control" 
+                       id="doctorname"  
+                       ng-model = "billModel.doctorname">
+              </div>
+        </form> 
+      </div>
+    </div>    
+  </div>
+              <div class="form-group">
+                <button class="btn btn-primary"> Save Bill
+                </button>  
+              </div>  
+
+
+
+  <table id="mainTable" class="table1 1table-bordered" style="cursor: pointer;">
+              <thead><tr><th>Name</th><th>Cost</th><th>Profit</th><th>Fun</th></tr></thead>
+              <tbody>
+                <tr><td tabindex="1">Car</td><td tabindex="1">100</td><td tabindex="1">200</td><td tabindex="1">0</td></tr>
+                <tr><td tabindex="1">Bike</td><td tabindex="1">330</td><td tabindex="1">240</td><td tabindex="1">1</td></tr>
+                <tr><td tabindex="1">Plane</td><td tabindex="1">430</td><td tabindex="1">540</td><td tabindex="1">3</td></tr>
+                <tr><td tabindex="1">Yacht</td><td tabindex="1">100</td><td tabindex="1">200</td><td tabindex="1">0</td></tr>
+                <tr><td tabindex="1">Segway</td><td tabindex="1">330</td><td tabindex="1">240</td><td tabindex="1">1</td></tr>
+              </tbody>
+              <tfoot>
+                <tr><th><strong>TOTAL</strong></th><th>1290</th><th>1420</th><th>5</th></tr>
+              </tfoot>
+  </table>
+        <script>
+          $('#mainTable').editableTableWidget({ editor: $('<input>'), preventColumns: [ 1, 2, 4 ] }).numericInputExample();
+          
+          var colors = ["red", "blue", "green", "yellow", "brown", "black"];
+ 		      $('#search').typeahead({source: colors});
+        </script>
+      
 
 
 

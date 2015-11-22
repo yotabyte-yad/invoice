@@ -142,7 +142,7 @@ app.get('/suppliers', function(req, res){
 
 
 	db.suppliers.findAll({
-		 attributes : ['name']
+		 attributes : ['id', 'name']
 	})
 		.then(function(suppliers){
 		

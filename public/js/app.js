@@ -1,4 +1,4 @@
-var app = angular.module("ybinvoice",["ngRoute"]);
+var app = angular.module("ybinvoice",['ngRoute', 'ngAnimate', 'ngSanitize', 'mgcrea.ngStrap']);
 
 app.config(function($routeProvider) {
   $routeProvider
@@ -34,9 +34,13 @@ app.config(function($routeProvider) {
 		controller: 'SupplierCtrl'
   })
     .when('/sales', {
-		templateUrl: 'views/sales/typeahead.html',
+		templateUrl: 'views/sales/sales.html',
 		controller: 'SalesCtrl'
   })  
+     .when('/search', {
+		templateUrl: 'views/search/search.html',
+		controller: 'searchCtrl'
+  })
     .when('/items', {
 		templateUrl: 'views/items/items.html',
 		controller: 'ItemsCtrl'
@@ -44,6 +48,14 @@ app.config(function($routeProvider) {
   	.otherwise({
 		redirectTo: '/home'
   })
+})
+
+.config(function($datepickerProvider) {
+  angular.extend($datepickerProvider.defaults, {
+    dateFormat: 'dd/MM/yyyy',
+    startWeek: 1,
+	autoclose: true
+  });
 });
 
 var checkLogin = function ($q, $timeout, $http, $location, $rootScope) {

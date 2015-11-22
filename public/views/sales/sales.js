@@ -1,30 +1,42 @@
-//Test 
-app.controller("SalesCtrl", function ($scope, $http){
- 	console.log("Test Sales");
-	 $scope.test_variable = 'Yadnyesh';
-	 $scope.bill = '';
-	 $scope.bill_header = '';
-	 $scope.bill.item_row = '';
-	 $scope.bill.item_list = [];
 
-		$scope.addItemRow = function () {
+app.controller("SalesCtrl", function ($scope, $templateCache, $http){
+	console.log('In get address');
+	$scope.selectedAddress = '';
+	$scope.selectedState = "";
+	$scope.states = [];
+	$scope.billModel = {};
+	$scope.getAddress = function() {		
+		//var params = {address: viewValue, sensor: false};
+		//console.log('Printing params', params);
+		//return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {params: params})
+		return $http.get('http://localhost:5000/items')
+		.then(function(res) {
+		
+		var json = res.data;
 
-			// the following should happen when the user clicks on addItemRow for the first time
-			// 1) Create the record in sales if it does not exist AND RETRIEVE BILL NO
-			// 2) Add the item to sales_details table and retrieve all the records related to the bill in sales table
-			// 3) Display the records to the user
+		var parsed = json;
 
-			$scope.item_list.push($scope.item_row.itemname);
-			console.log('The entered row is: ' + $scope.item_row.itemname);
-			console.log($scope.item_list[0]); 
-		}			
+		var arr = [];
 
-	 $scope.data = [
-					  ["", "Ford", "Volvo", "Toyota", "Honda"],
-					  ["2014", 10, 11, 12, 13],
-					  ["2015", 20, 11, 14, 13],
-					  ["2016", 30, 15, 12, 13]
-					];	
+		for(var x in parsed){
+		arr.push(parsed[x].item_name);
+		//console.log(parsed[x].item_name);
+		
+		}	
+		$scope.states = arr;
+		console.log($scope.states);	
+		//console.log('Results', res.data);	
+		return $scope.states;
+		});
+	};
+	$scope.getAddress();
+});	
 
-});
 
+// $scope.selectedState = "";
+// $scope.states = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"];
+
+// $scope.selectedIcon = "";
+// $scope.icons = "[{"value":"Gear","label":"<i class=\"fa fa-gear\"></i> Gear"},{"value":"Globe","label":"<i class=\"fa fa-globe\"></i> Globe"},{"value":"Heart","label":"<i class=\"fa fa-heart\"></i> Heart"},{"value":"Camera","label":"<i class=\"fa fa-camera\"></i> Camera"}]";
+
+// $scope.selectedAddress = "";
