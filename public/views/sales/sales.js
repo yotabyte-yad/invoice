@@ -1,6 +1,6 @@
 //Test 
 app.controller("SalesCtrl", function ($scope, $http){
- 	console.log("Test Sales");
+
 	 $scope.test_variable = 'Yadnyesh';
 	 $scope.bill = '';
 	 $scope.bill_header = '';
@@ -24,7 +24,19 @@ app.controller("SalesCtrl", function ($scope, $http){
 					  ["2014", 10, 11, 12, 13],
 					  ["2015", 20, 11, 14, 13],
 					  ["2016", 30, 15, 12, 13]
-					];	
+					];
+					
+	  $scope.selectedAddress = 'Manyata';
+		$scope.getAddress = function(viewValue) {
+			 	
+			var params = {address: viewValue, sensor: false};
+			console.log("paramas print", params);
+			return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {params: params})
+			.then(function(res) {
+				console.log(res);
+			return res.data.results;
+			});
+  };					
 
 });
 
