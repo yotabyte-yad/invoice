@@ -37,6 +37,10 @@ app.config(function($routeProvider) {
 		templateUrl: 'views/sales/sales.html',
 		controller: 'SalesCtrl'
   })  
+     .when('/search', {
+		templateUrl: 'views/search/search.html',
+		controller: 'searchCtrl'
+  })
     .when('/items', {
 		templateUrl: 'views/items/items.html',
 		controller: 'ItemsCtrl'
@@ -44,6 +48,14 @@ app.config(function($routeProvider) {
   	.otherwise({
 		redirectTo: '/home'
   })
+})
+
+.config(function($datepickerProvider) {
+  angular.extend($datepickerProvider.defaults, {
+    dateFormat: 'dd/MM/yyyy',
+    startWeek: 1,
+	autoclose: true
+  });
 });
 
 var checkLogin = function ($q, $timeout, $http, $location, $rootScope) {

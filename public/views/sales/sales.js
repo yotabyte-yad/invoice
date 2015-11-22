@@ -1,10 +1,12 @@
+
 app.controller("SalesCtrl", function ($scope, $templateCache, $http){
-	
+	console.log('In get address');
 	$scope.selectedAddress = '';
 	$scope.selectedState = "";
 	$scope.states = [];
-	$scope.getAddress = function(viewValue) {
-		var params = {address: viewValue, sensor: false};
+	$scope.billModel = {};
+	$scope.getAddress = function() {		
+		//var params = {address: viewValue, sensor: false};
 		//console.log('Printing params', params);
 		//return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {params: params})
 		return $http.get('http://localhost:5000/items')
@@ -27,7 +29,7 @@ app.controller("SalesCtrl", function ($scope, $templateCache, $http){
 		return $scope.states;
 		});
 	};
-	
+	$scope.getAddress();
 });	
 
 
