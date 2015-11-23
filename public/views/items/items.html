@@ -1,10 +1,11 @@
-	<form>
+	<form novalidate="novalidate" ng-submit="createItem()">
 		<div class="form-group">
 			<label for="name">Name</label>
 			<input type="text"
 				   class="form-control"
 				   ng-model="itemModel.item_name"
-				   id="item_name">
+				   id="item_name"
+				   required="required">
 		</div>
 		<div class="form-group">
 			<label for="name">Manufacturer</label>
@@ -42,7 +43,7 @@
 				   id="item_sch">
 		</div>
 		<div class="form-group">
-			<button class="btn btn-primary" ng-click="createItem()">Create</button>
+			<button class="btn btn-primary" type="submit">Create</button>
 		</div>
 	</form>
 	
