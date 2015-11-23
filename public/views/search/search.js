@@ -1,48 +1,43 @@
-app.controller("searchCtrl", function ($scope){
-	//TODO
-	
-	
-});	
 
-           var substringMatcher = function(strs) {
-          return function findMatches(q, cb) {
-            var matches, substringRegex;
-        
-            // an array that will be populated with substring matches
-            matches = [];
-        
-            // regex used to determine if a string contains the substring `q`
-            substrRegex = new RegExp(q, 'i');
-        
-            // iterate through the pool of strings and for any string that
-            // contains the substring `q`, add it to the `matches` array
-            $.each(strs, function(i, str) {
-              if (substrRegex.test(str)) {
-                matches.push(str);
-              }
-            });
-        
-            cb(matches);
-          };
-        };
-        
-        var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-          'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-          'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-          'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-          'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-          'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-          'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-          'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-          'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-        ];
-        
-        $('#the-basics .typeahead').typeahead({
-          hint: true,
-          highlight: true,
-          minLength: 1
-        },
-        {
-          name: 'states',
-          source: substringMatcher(states)
-        });
+
+// app.controller("searchCtrl", function ($scope){
+   
+	
+// });	
+
+app.controller('searchCtrl', function($scope, $templateCache, $http) {
+
+  $scope.selectedState = '';
+  /* these are the initial values */
+  $scope.states = ['Alabama', 'Alaska', 'Arizona'];
+  
+  /* this function is exceutes once to fech all the states and put it into $scope.states global variable */
+  (function(){
+    $http.get('http://maps.googleapis.com/maps/api/geocode/json', {params: ''})
+    .then(function(res) {
+      console.log('Response', res);
+      $scope.states = res;
+    });  
+  }());
+  
+  $scope.selectedAddress = '';
+  $scope.getAddress = function(viewValue) {
+    var params = {address: viewValue, sensor: false};
+    return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {params: params})
+    .then(function(res) {
+      return res.data.results;
+    });
+  };
+  
+  $scope.selectedItem = '';
+  $scope.getItems = function(viewValue) {
+    var params = {q: viewValue, sensor: false};
+    return $http.get('http://localhost:5000/items', {params: params})
+    .then(function(res) {
+      console.log('My function ... ', res.data);
+      return res.data.results;
+    });
+  };
+
+  
+});
