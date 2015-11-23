@@ -12,7 +12,8 @@ app.controller("ItemsCtrl", function ($location, $scope, $http, $rootScope){
 	
 	$scope.createItem = function(item){
 		console.log("within ItemsCtrl Items", $scope.itemModel);
-		$http.post('/item', $scope.itemModel).success(function(response){
+		$http.post('/item', $scope.itemModel)
+			      .success(function(response){
 			console.log('Server Response: ' );
 			console.log(response);
 	}).error(function(e){
