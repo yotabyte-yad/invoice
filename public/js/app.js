@@ -1,4 +1,4 @@
-var app = angular.module("ybinvoice",['ngRoute', 'ngAnimate', 'ngSanitize', 'mgcrea.ngStrap','jcs-autoValidate']);
+var app = angular.module("ybinvoice",['ngRoute', 'ngAnimate', 'ngSanitize', 'mgcrea.ngStrap','jcs-autoValidate','angular-ladda']);
 
 app.config(function($routeProvider) {
   $routeProvider
