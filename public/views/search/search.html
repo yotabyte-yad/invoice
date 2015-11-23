@@ -1,40 +1,16 @@
-<form>
-    <label for="employee_name">Name</label>
-    <input type="text" class="typeahead" id="#my-input" /><br/>
-</form>
-
-<script>
+<div class="bs-docs-section">
   
-// instantiate the bloodhound suggestion engine
-var items = new Bloodhound({  
-  datumTokenizer: function(items) {
-      return Bloodhound.tokenizers.whitespace(items.value);
-  },
-  queryTokenizer: Bloodhound.tokenizers.whitespace,
-  remote: {
-    url: "http://localhost:5000/items",
-    filter: function(response) {      
-      console.log(response);
-      return response;
-    }
-  }
-});
-
-// initialize the bloodhound suggestion engine
-items.initialize();
-
-// instantiate the typeahead UI
-$('.typeahead').typeahead(
-  { hint: true,
-    highlight: true,
-    minLength: 1
-  }, 
-  {
-  name: 'countries',
-  displayKey: function(countries) {
-    return items.item_name;        
-  },
-  source: items.ttAdapter()
-});
+  <div class="bs-example" style="padding-bottom: 24px;" append-source>
+    <form class="form-inline" role="form">
+      
+      <div class="form-group">
+        <label><i class="fa fa-globe"></i> State</label>
+        <input type="text" class="form-control" ng-model="selectedState" bs-options="address.formatted_address as address.formatted_address for address in getItems($viewValue)" 
+        placeholder="Enter state" bs-typeahead>
+      </div>
+    
+    </form>
+  </div>
   
-</script>
+</div>
+
