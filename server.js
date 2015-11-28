@@ -143,7 +143,7 @@ app.get('/mfgs', function(req, res){
 
 	db.mfgs.findAll()
 		.then(function(mfgs){		
-			console.log(mfgs.description);
+			console.log(mfgs);
 			res.json(mfgs);			
 	}, function(e){
 		res.status(500).send('Error in fetch (GET) all suppliers: ' + e);
