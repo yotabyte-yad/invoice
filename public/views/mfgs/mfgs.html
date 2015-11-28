@@ -1,3 +1,19 @@
+<div>
+    <button ng-click="GetAllData()">Get All Data</button> | 
+    <input type="text" name="keyword" ng-model="keyword" required />
+    <button ng-click="SearchData()">Search</button> 
+    <hr />
+    <ul>
+        <li ng-repeat="d in Details">
+            {{ d.name + ' ' + d.state + ', ' + d.pincode}}
+        </li>
+    </ul>
+    <p ng-bind="ResponseDetails"></p>
+    {{ResponseDetails}}
+</div>
+
+
+
 <div class="panel panel-primary">
   <div class="panel-heading">
     <h3 class="panel-title">Company Information</h3>
