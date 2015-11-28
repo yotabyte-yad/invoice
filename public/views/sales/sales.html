@@ -65,6 +65,16 @@
               <td> <input type="button" value="-" id="remove" class="remove btn btn-primary"></td>     
             </tr> 
           </tbody>
+          <tfooter>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th style="text-align:center" class="total">0</th>              
+          </tfooter>
       </table>
     </div>     
   </div>
@@ -84,15 +94,28 @@
 
     $('body').delegate('.remove','click', function(){
         $(this).parent().parent().remove();
+        total();
     });
 
-    $('.detail').delegate('.quantity, .price','keyup',function(){
-      var tr = $(this).parent().parent();
-      var qty = tr.find('.quantity').val() || 0;
-      var price = tr.find('.price').val() || 0;
-      var amount = qty * price 
-      tr.find('.amount').val(amount);
+
+  function total(){
+    var t = 0;
+    $('.amount').each(function(i,e){
+      var amt = $(this).val()-0;
+      t += amt;
     });
+
+    $('.total').html(t);
+
+  }
+
+  $('.detail').delegate('.quantity, .price','keyup',function(){
+    var tr = $(this).parent().parent();
+    var qty = tr.find('.quantity').val() || 0;
+    var price = tr.find('.price').val() || 0;
+    var amount = qty * price; 
+    tr.find('.amount').val(amount);
+    total();
 
   });
 
@@ -111,9 +134,10 @@
                 '<td> <input type="text" class="form-control amount" name = "amount[]"> </td> ' +
                 '<td> <input type="button" value="-" id="remove" class="remove btn btn-primary"></td>' +     
                '</tr>';
-     $('.detail').append(tr);          
+     $('.detail').append(tr); 
+  }            
 
-  }  
+  });  
 
 </script>
       
