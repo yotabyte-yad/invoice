@@ -5,6 +5,34 @@ app.controller("SalesCtrl", function ($scope, $templateCache, $http){
 	$scope.selectedState = "";
 	$scope.states = [];
 	$scope.billModel = {};
+
+	//Bill header
+	$scope.billModel.billno = 0;
+	$scope.billModel.date;
+	$scope.billModel.patient;
+	$scope.billModel.doctor;
+
+	//Bill details
+	$scope.billModel.details = [];
+	//Bill detail object for each row, there should be one object per row of items on the bill
+	$scope.billModel.detail_row = {bill_no: undefined,
+								   item_id: undefined,
+								   item_name: undefined
+								   item_qty: undefined,
+								   item_sch: undefined,
+								   item_mfg: undefined,
+								   item_btch: undefined,
+								   item_exp:undefined,
+								   item_amt: undefined
+								   };
+
+	//Taxes
+	$scope.billModel.vat5 = 0;
+	$scope.billModel.vat7 = 0;
+
+	//Bill discount
+	$scope.billModel.discount = 0;
+
 	$scope.getAddress = function() {		
 		//var params = {address: viewValue, sensor: false};
 		//console.log('Printing params', params);
