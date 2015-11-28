@@ -41,12 +41,13 @@
     <div class="col-lg-12 col-lg-offset-0 center">
       <table class="table table-bordered">
           <thead>
-              <th class="col-lg-4">ITEM </th>
+              <th class="col-lg-5">ITEM </th>
               <th class="col-lg-1">Quantity</th>              
               <th class="col-lg-1">SCH </th>
               <th class="col-lg-1">MFG. </th>
               <th class="col-lg-1">Batch No. </th>
               <th class="col-lg-1">Exp Data</th>
+              <th class="col-lg-1">Price</th>
               <th class="col-lg-1">Amount</th>
               <th class="col-lg-1"></th>
           </thead>
@@ -59,8 +60,9 @@
               <td> <input type="text" class="form-control mfg" name = "mfg[]"> </td>
               <td> <input type="text" class="form-control batch" name = "batch[]"> </td>
               <td> <input type="text" class="form-control expdate" name = "expdate[]"> </td>
+              <td> <input type="text" class="form-control price" name = "price[]"> </td>
               <td> <input type="text" class="form-control amount" name = "amount[]"> </td>
-              <td> <a href="#" class="remove">Delete</td>     
+              <td> <input type="button" value="-" id="remove" class="remove btn btn-primary"></td>     
             </tr> 
           </tbody>
       </table>
@@ -84,6 +86,14 @@
         $(this).parent().parent().remove();
     });
 
+    $('.detail').delegate('.quantity, .price','keyup',function(){
+      var tr = $(this).parent().parent();
+      var qty = tr.find('.quantity').val() || 0;
+      var price = tr.find('.price').val() || 0;
+      var amount = qty * price 
+      tr.find('.amount').val(amount);
+    });
+
   });
 
   function addnewrow(){
@@ -97,6 +107,7 @@
                 '<td> <input type="text" class="form-control mfg" name = "mfg[]"> </td> ' +
                 '<td> <input type="text" class="form-control batch" name = "batch[]"> </td> ' +
                 '<td> <input type="text" class="form-control expdate" name = "expdate[]"> </td> ' +
+                '<td> <input type="text" class="form-control price" name = "price[]"> </td> ' +
                 '<td> <input type="text" class="form-control amount" name = "amount[]"> </td> ' +
                 '<td> <input type="button" value="-" id="remove" class="remove btn btn-primary"></td>' +     
                '</tr>';
