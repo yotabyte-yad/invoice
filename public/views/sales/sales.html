@@ -12,7 +12,7 @@
                          value="" disabled>
               </div> 
               <div class="col-md-2">
-                <label class="control-label" for="billdate"><b>Bill Date</b></label>
+                <label class="control-label" for="billdate"><b>Date</b></label>
                 <input type="text"
                        class="form-control" 
                        id="billdate"  
@@ -20,14 +20,14 @@
                        bs-datepicker>
               </div> 
               <div class="col-md-4">
-                <label class="control-label" for="patientname"><b>Patient</b></label>
+                <label class="control-label" for="patientname"><b>Patient Name</b></label>
                 <input type="text"
                        class="form-control" 
                        id="patientname"  
                        ng-model = "billModel.patient">
               </div>
               <div class="col-md-5">
-                <label class="control-label" for="doctorname"><b>Doctor</b></label>
+                <label class="control-label" for="doctorname"><b>Prescribing Doctor</b></label>
                 <input type="text"
                        class="form-control" 
                        id="doctorname"  
@@ -35,6 +35,9 @@
               </div>
         </form> 
       </div>
+      <!-- Table for Bill Details -->
+      <table>
+      </table>
     </div>    
   </div>
   <div class="form-group col-lg-offset-5">
