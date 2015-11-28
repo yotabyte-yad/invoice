@@ -1,9 +1,7 @@
 
 app.controller("SalesCtrl", function ($scope, $templateCache, $http){
-	console.log('In get address');
-	$scope.selectedAddress = '';
-	$scope.selectedState = "";
-	$scope.states = [];
+	console.log('In sales controller');
+	
 	$scope.billModel = {};
 
 	//Bill header
@@ -13,18 +11,23 @@ app.controller("SalesCtrl", function ($scope, $templateCache, $http){
 	$scope.billModel.doctor;
 
 	//Bill details
-	$scope.billModel.details = [];
+	$scope.billModel.details = [new $scope.billModel.detail_row()];
 	//Bill detail object for each row, there should be one object per row of items on the bill
-	$scope.billModel.detail_row = {bill_no: undefined,
-								   item_id: undefined,
-								   item_name: undefined
-								   item_qty: undefined,
-								   item_sch: undefined,
-								   item_mfg: undefined,
-								   item_btch: undefined,
-								   item_exp:undefined,
-								   item_amt: undefined
+	$scope.billModel.detail_row = function (){
+								   this.row_id = undefined,
+								   this.bill_no = undefined,
+								   this.item_id = undefined
+								   // item_name: undefined,
+								   // item_qty: undefined,
+								   // item_sch: undefined,
+								   // item_mfg: undefined,
+								   // item_btch: undefined,
+								   // item_exp:undefined,
+								   // item_amt: undefined
 								   };
+
+
+	//Trying out 	
 
 	//Taxes
 	$scope.billModel.vat5 = 0;
@@ -32,6 +35,10 @@ app.controller("SalesCtrl", function ($scope, $templateCache, $http){
 
 	//Bill discount
 	$scope.billModel.discount = 0;
+
+	//Bill amount
+	$scope.billModel.grossAmount = 0;
+	$scope.billModel.netAmount = 0;
 
 	$scope.getAddress = function() {		
 		//var params = {address: viewValue, sensor: false};

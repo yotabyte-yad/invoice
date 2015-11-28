@@ -7,31 +7,32 @@
               <div class="col-md-1">
                   <label for="billno"><b>Bill No</b></label>
                   <input type="text"
-                         class="form-control" 
-                         id="billno"  
+                         class="form-control font-weight:bold" 
+                         id="billno",
+                         ng-model="billModel.billno"  
                          value="" disabled>
               </div> 
               <div class="col-md-2">
-                <label class="control-label" for="billdate"><b>Date</b></label>
+                <label class="control-label" for="date"><b>Date</b></label>
                 <input type="text"
                        class="form-control" 
-                       id="billdate"  
-                       ng-model = "billModel.billdate" 
+                       id="date"  
+                       ng-model = "billModel.date" 
                        bs-datepicker>
               </div> 
               <div class="col-md-4">
-                <label class="control-label" for="patientname"><b>Patient Name</b></label>
+                <label class="control-label" for="patient"><b>Patient Name</b></label>
                 <input type="text"
                        class="form-control" 
-                       id="patientname"  
+                       id="patient"  
                        ng-model = "billModel.patient">
               </div>
               <div class="col-md-5">
-                <label class="control-label" for="doctorname"><b>Prescribing Doctor</b></label>
+                <label class="control-label" for="doctor"><b>Prescribing Doctor</b></label>
                 <input type="text"
                        class="form-control" 
-                       id="doctorname"  
-                       ng-model = "billModel.doctorname">
+                       id="doctor"  
+                       ng-model = "billModel.doctor">
               </div>
         </form> 
       </div>
@@ -52,17 +53,17 @@
           </thead>
           <tbody>
             <tr>
-              <td> 
+              <td style="text-align: center"> 
                 <input type="text"
                  class="form-control" 
                  id="bill_item_name">
               </td>
-              <td>Quantity</td>
-              <td>SCH </td>
-              <td>MFG. </td>
-              <td>Batch No. </td>
-              <td>Exp Data</td>
-              <td>Amount</td>
+              <td style="text-align: center">Quantity</td>
+              <td style="text-align: center">SCH </td>
+              <td style="text-align: center">MFG. </td>
+              <td style="text-align: center">Batch No. </td>
+              <td style="text-align: center">Exp Data</td>
+              <td style="text-align: right">Amount</td>
             </tr> 
           </tbody>
       </table>
