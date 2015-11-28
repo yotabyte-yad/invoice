@@ -33,9 +33,9 @@ app.config(function($routeProvider) {
 		templateUrl: 'views/supplier/supplier.html',
 		controller: 'SupplierCtrl'
   })
-  	.when('/company', {
-		templateUrl: 'views/company/company.html',
-		controller: 'CompanyCtrl'
+  	.when('/mfgs', {
+		templateUrl: 'views/mfgs/mfgs.html',
+		controller: 'MfgsCtrl'
   })
     .when('/sales', {
 		templateUrl: 'views/sales/sales.html',

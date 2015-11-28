@@ -134,6 +134,23 @@ app.get("/logout", function (req, res){
 
 });
 
+//GET all the MFGs
+app.get('/mfgs', function(req, res){
+	//var query = req.query;
+	var where = {};
+		where.active = true;
+
+
+	db.mfgs.findAll()
+		.then(function(mfgs){		
+			console.log(mfgs);
+			res.json(mfgs);			
+	}, function(e){
+		res.status(500).send('Error in fetch (GET) all suppliers: ' + e);
+	});
+
+});	
+
 //GET all the suppliers
 app.get('/suppliers', function(req, res){
 	//var query = req.query;

@@ -1,4 +1,4 @@
-<link href="css/bootstrap.css" rel="stylesheet" />
+<link href="css/bootstrap-cosmo.css" rel="stylesheet" />
 <link href="css/font-awesome.css" rel="stylesheet" />
 <link href="css/ladda-themeless.min.css" rel="stylesheet" />
 
@@ -35,7 +35,7 @@
 <script src="views/supplier/supplier.js"></script>
 <script src="views/sales/sales.js"></script>
 <script src="views/search/search.js"></script>
-<script src="views/company/company.js"></script>
+<script src="views/mfgs/mfgs.js"></script>
 <body ng-app="ybinvoice">
 	<nav ng-controller="NavCtrl">
 		<span ng-show="currentUser">
@@ -67,7 +67,7 @@
 				<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
 				<li><a href="#home">Home</a></li>
 				<li><a href="#login">Login</a></li>
-				<li><a href="#company">Company</a></li>
+				<li><a href="#mfgs">Manufacturer</a></li>
 				<li><a href="#profile">Profile</a></li>
 				<li><a href="#items">Items</a></li>
 				<li><a href="#purchase">Purchase</a></li>
@@ -97,9 +97,9 @@
 		</div>
 	</div>
 	</nav>			
-	<span ng-show="currentUser1">
+	<!-- <span ng-show="currentUser1">
 		User logged in: {{currentUser}}
-	</span>		
+	</span> -->		
 	<div ng-view class = "container main-content">
 	</div>
 </body>
