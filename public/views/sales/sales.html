@@ -39,44 +39,72 @@
     </div> <!-- Panel Default -->
     <!-- Table for Bill Details -->
     <div class="col-lg-12 col-lg-offset-0 center">
-      <table class="table table-bordered" id="mainTable">
+      <table class="table table-bordered">
           <thead>
-            <tr>
-              <th class="col-lg-5 center">ITEM </th>
-              <th class="col-lg-1 center">Quantity</th>              
+              <th class="col-lg-4">ITEM </th>
+              <th class="col-lg-1">Quantity</th>              
               <th class="col-lg-1">SCH </th>
               <th class="col-lg-1">MFG. </th>
               <th class="col-lg-1">Batch No. </th>
-              <th class="col-lg-2">Exp Data</th>
-              <th class="col-lg-2">Amount</th>
-            </tr>
+              <th class="col-lg-1">Exp Data</th>
+              <th class="col-lg-1">Amount</th>
+              <th class="col-lg-1"></th>
           </thead>
-          <tbody>
+          <tbody class="detail">
             <tr>
-              <td style="text-align: center"> 
-                <input type="text"
-                 class="form-control" 
-                 id="bill_item_name">
-              </td>
-              <td style="text-align: center">Quantity</td>
-              <td style="text-align: center">SCH </td>
-              <td style="text-align: center">MFG. </td>
-              <td style="text-align: center">Batch No. </td>
-              <td style="text-align: center">Exp Data</td>
-              <td style="text-align: right">Amount</td>
+              <td style="display:none;" class = "no"> 1 </td> 
+              <td> <input type="text" class="form-control itemname" name = "itemname[]"> </td>
+              <td> <input type="text" class="form-control quantity" name = "quantity[]"> </td>
+              <td> <input type="text" class="form-control sch" name = "sch[]"> </td>
+              <td> <input type="text" class="form-control mfg" name = "mfg[]"> </td>
+              <td> <input type="text" class="form-control batch" name = "batch[]"> </td>
+              <td> <input type="text" class="form-control expdate" name = "expdate[]"> </td>
+              <td> <input type="text" class="form-control amount" name = "amount[]"> </td>
+              <td> <a href="#" class="remove">Delete</td>     
             </tr> 
           </tbody>
       </table>
     </div>     
   </div>
   <div class="form-group col-lg-offset-5">
+  <input type="button" value="+" id="add" class="btn btn-primary">
     <button class="btn btn-primary"> SAVE BILL
     </button>  
   </div>  
 
-        <script>
-          $('#mainTable').editableTableWidget({ editor: $('<input>'), preventColumns: [ 3,4,5,6,7 ] }).numericInputExample();
-        </script>
+<script>
+  // $('#mainTable1').editableTableWidget({ editor: $('<input>'), preventColumns: [ 3,4,5,6,7 ] }).numericInputExample();
+
+  $(function(){
+    $('#add').click(function(){
+      addnewrow();
+    });
+
+    $('body').delegate('.remove','click', function(){
+        $(this).parent().parent().remove();
+    });
+
+  });
+
+  function addnewrow(){
+     var n = ($('.detail tr').length-0) + 1;
+     console.log(n);
+     var tr = '<tr> ' + 
+                '<td style="display:none;" class = "no"> ' + n + ' </td> ' +
+                '<td> <input type="text" class="form-control itemname" name = "itemname[]"> </td> ' +
+                '<td> <input type="text" class="form-control quantity" name = "quantity[]"> </td> ' +
+                '<td> <input type="text" class="form-control sch" name = "sch[]"> </td> ' +
+                '<td> <input type="text" class="form-control mfg" name = "mfg[]"> </td> ' +
+                '<td> <input type="text" class="form-control batch" name = "batch[]"> </td> ' +
+                '<td> <input type="text" class="form-control expdate" name = "expdate[]"> </td> ' +
+                '<td> <input type="text" class="form-control amount" name = "amount[]"> </td> ' +
+                '<td> <input type="button" value="-" id="remove" class="remove btn btn-primary"></td>' +     
+               '</tr>';
+     $('.detail').append(tr);          
+
+  }  
+
+</script>
       
 
 

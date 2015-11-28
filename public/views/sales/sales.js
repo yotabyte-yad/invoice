@@ -11,20 +11,20 @@ app.controller("SalesCtrl", function ($scope, $templateCache, $http){
 	$scope.billModel.doctor;
 
 	//Bill details
-	$scope.billModel.details = [new $scope.billModel.detail_row()];
+	//$scope.billModel.details = [new $scope.billModel.detail_row()];
 	//Bill detail object for each row, there should be one object per row of items on the bill
-	$scope.billModel.detail_row = function (){
-								   this.row_id = undefined,
-								   this.bill_no = undefined,
-								   this.item_id = undefined
-								   // item_name: undefined,
-								   // item_qty: undefined,
-								   // item_sch: undefined,
-								   // item_mfg: undefined,
-								   // item_btch: undefined,
-								   // item_exp:undefined,
-								   // item_amt: undefined
-								   };
+	// $scope.billModel.detail_row = function (){
+	// 							   this.row_id = undefined,
+	// 							   this.bill_no = undefined,
+	// 							   this.item_id = undefined
+	// 							   // item_name: undefined,
+	// 							   // item_qty: undefined,
+	// 							   // item_sch: undefined,
+	// 							   // item_mfg: undefined,
+	// 							   // item_btch: undefined,
+	// 							   // item_exp:undefined,
+	// 							   // item_amt: undefined
+	// 							   };
 
 
 	//Trying out 	
