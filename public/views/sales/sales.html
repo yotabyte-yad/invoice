@@ -37,6 +37,59 @@
         </form> 
       </div>
     </div> <!-- Panel Default -->
+
+    <!-- Table for Bill Details with ANGULAR JS-->
+    <div class="col-lg-12 col-lg-offset-0 center"
+         ng-init="billModel={items:[{
+         itemname:'',
+         quantity:0,
+         sch: false,
+         mfg: '',
+         batch: '',
+         expdate: '',
+         price: '',
+         amount: ''
+         }]}"
+    >
+      <table class="table table-bordered">
+        <thead>
+          <th class="col-lg-5">ITEM </th>
+          <th class="col-lg-1">Quantity</th>              
+          <th class="col-lg-1">SCH </th>
+          <th class="col-lg-1">MFG. </th>
+          <th class="col-lg-1">Batch No. </th>
+          <th class="col-lg-1">Exp Data</th>
+          <th class="col-lg-1">Price</th>
+          <th class="col-lg-1">Amount</th>
+          <th class="col-lg-1"></th>
+        </thead>
+        <tbody class="detail">
+          <tr ng-repeat = "item in billModel.items">
+            <td><input class="form-control" ng-model="item.itemname"></td>
+            <td><input class="form-control" ng-model="item.quantity"></td>
+            <td><input class="form-control" ng-model="item.sch"></td>
+            <td><input class="form-control" ng-model="item.mfg"></td>
+            <td><input class="form-control" ng-model="item.batch"></td>
+            <td><input class="form-control" ng-model="item.expdate"></td>
+            <td><input class="form-control" ng-model="item.price"></td>
+            <td style="text-align:center">{{(item.quantity || 0) * (item.price || 0)}}</td>
+            <td> <input type="button" value="X" class="btn btn-primary ng-click=removeItem(item)"></td>             
+          </tr>
+        </tbody>
+        <tfooter>
+        </tfooter>
+      </table>  
+    </div>
+    <!-- ABOVE:::::: Table for Bill Details with ANGULAR JS-->
+
+
+
+
+
+
+
+
+
     <!-- Table for Bill Details -->
     <div class="col-lg-12 col-lg-offset-0 center">
       <table class="table table-bordered">
