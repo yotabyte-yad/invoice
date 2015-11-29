@@ -10,6 +10,8 @@ app.controller("SalesCtrl", function ($scope, $templateCache, $http){
 	$scope.billModel.patient;
 	$scope.billModel.doctor;
 
+	//$scope.billModel.itemname = [];
+
 	//Bill details
 	//$scope.billModel.details = [new $scope.billModel.detail_row()];
 	//Bill detail object for each row, there should be one object per row of items on the bill

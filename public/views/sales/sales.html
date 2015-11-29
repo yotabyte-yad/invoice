@@ -54,7 +54,7 @@
           <tbody class="detail">
             <tr>
               <td style="display:none;" class = "no"> 1 </td> 
-              <td> <input type="text" class="form-control itemname" name = "itemname[]"> </td>
+              <td> <input type="text" class="form-control itemname" name = "itemname[]" ng-model="testhis[1]" </td>
               <td> <input type="text" class="form-control quantity" name = "quantity[]"> </td>
               <td> <input type="text" class="form-control sch" name = "sch[]"> </td>
               <td> <input type="text" class="form-control mfg" name = "mfg[]"> </td>
@@ -95,6 +95,7 @@
     $('body').delegate('.remove','click', function(){
         $(this).parent().parent().remove();
         total();
+        console.log('Item Name', itemname[1]);
     });
 
 
@@ -124,7 +125,7 @@
      console.log(n);
      var tr = '<tr> ' + 
                 '<td style="display:none;" class = "no"> ' + n + ' </td> ' +
-                '<td> <input type="text" class="form-control itemname" name = "itemname[]"> </td> ' +
+                '<td> <input type="text" class="form-control itemname" name = "itemname[]" ng-model="testthis[' + n + ']"> </td> ' +
                 '<td> <input type="text" class="form-control quantity" name = "quantity[]"> </td> ' +
                 '<td> <input type="text" class="form-control sch" name = "sch[]"> </td> ' +
                 '<td> <input type="text" class="form-control mfg" name = "mfg[]"> </td> ' +
