@@ -25,18 +25,29 @@ app.controller("SalesCtrl", function ($scope, $templateCache, $http){
 
 
 	$scope.addItem = function(){
-		$scope.billModel.items.unshift({
-         itemname:'',
-         quantity:0,
-         sch: false,
-         mfg: '',
-         batch: '',
-         expdate: '',
-         price: 100,
-         amount: ''
-         });
+		
+		//Add blank row only if there are less than 1 blank row remaining
+		//no point in adding blank rows if 2 of them already exists
+		var blank = 0;
+		for(count=0;count<$scope.billModel.items.length;count++){
+			if($scope.billModel.items[count].itemname === undefined) {
+				blank += blank + 1
+			}			
+		}
 
-		console.log($scope.billModel.items);
+		if(blank <=1){
+			$scope.billModel.items.push({
+	         itemname:undefined,
+	         quantity:0,
+	         sch: false,
+	         mfg: '',
+	         batch: '',
+	         expdate: '',
+	         price: 100,
+	         amount: ''
+	         });						
+		}
+		//console.log($scope.billModel.items);
 	}
 
 	$scope.removeItem = function(item){
@@ -44,11 +55,17 @@ app.controller("SalesCtrl", function ($scope, $templateCache, $http){
 	}
 
 	$scope.totalPrice = function(){
-			var total = 0;
+			var subtotal = 0;
 			for(count=0;count<$scope.billModel.items.length;count++){
-				total += (($scope.billModel.items[count].price || 0) *($scope.billModel.items[count].quantity || 0));
-				//(item.quantity || 0) * (item.price || 0)
+				subtotal += (($scope.billModel.items[count].price || 0) * ($scope.billModel.items[count].quantity || 0));
 			}
-			return total;
+			return subtotal;
 	};
+
+	$scope.grandTotal = function(){
+			var grandtotal = 0;
+			grandTotal = (($scope.totalPrice() || 0) - ($scope.billModel.discount || 0));
+			return grandtotal;
+	};
+	$scope.billModel.netAmount = $scope.grandTotal() || 0;
 });	
