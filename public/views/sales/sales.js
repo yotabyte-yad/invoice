@@ -32,12 +32,23 @@ app.controller("SalesCtrl", function ($scope, $templateCache, $http){
          mfg: '',
          batch: '',
          expdate: '',
-         price: '',
+         price: 100,
          amount: ''
          });
+
+		console.log($scope.billModel.items);
 	}
 
 	$scope.removeItem = function(item){
 		$scope.billModel.items.splice($scope.billModel.items.indexOf(item),1);
 	}
+
+	$scope.totalPrice = function(){
+			var total = 0;
+			for(count=0;count<$scope.billModel.items.length;count++){
+				total += (($scope.billModel.items[count].price || 0) *($scope.billModel.items[count].quantity || 0));
+				//(item.quantity || 0) * (item.price || 0)
+			}
+			return total;
+	};
 });	

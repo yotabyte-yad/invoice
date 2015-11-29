@@ -1,6 +1,6 @@
 <div class="container main-content col-md-12" id = "yadDiv">
   
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
       <div class="panel-body">
         <form>     
 
@@ -17,8 +17,7 @@
                 <input type="text"
                        class="form-control" 
                        id="date"  
-                       ng-model = "billModel.date" 
-                       bs-datepicker>
+                       ng-model = "billModel.date">
               </div> 
               <div class="col-md-4">
                 <label class="control-label" for="patient"><b>Patient Name</b></label>
@@ -35,115 +34,119 @@
                        ng-model = "billModel.doctor">
               </div>
         </form> 
-      </div>
-    </div> <!-- Panel Default -->
+                            <div><div>&nbsp</div></div> 
+    <!--  </div>  Panel Body 
+    </div>  Panel Default -->
 
-    <!-- Table for Bill Details with ANGULAR JS-->
-    <div class="col-lg-12 col-lg-offset-0 center"
-         ng-init="billModel={items:[{
-         itemname:'',
-         quantity:0,
-         sch: false,
-         mfg: '',
-         batch: '',
-         expdate: '',
-         price: '',
-         amount: ''
-         }]}"
-    >
-      <table class="table table-bordered">
-        <thead>
-          <th class="col-lg-5">ITEM </th>
-          <th class="col-lg-1">Quantity</th>              
-          <th class="col-lg-1">SCH </th>
-          <th class="col-lg-1">MFG. </th>
-          <th class="col-lg-1">Batch No. </th>
-          <th class="col-lg-1">Exp Data</th>
-          <th class="col-lg-1">Price</th>
-          <th class="col-lg-1">Amount</th>
-          <th class="col-lg-1"></th>
-        </thead>
-        <tbody class="detail">
-          <tr ng-repeat = "item in billModel.items">
-            <td><input class="form-control" ng-model="item.itemname"></td>
-            <td><input class="form-control" ng-model="item.quantity"></td>
-            <td><input class="form-control" ng-model="item.sch"></td>
-            <td><input class="form-control" ng-model="item.mfg"></td>
-            <td><input class="form-control" ng-model="item.batch"></td>
-            <td><input class="form-control" ng-model="item.expdate"></td>
-            <td><input class="form-control" ng-model="item.price"></td>
-            <td style="text-align:center">{{(item.quantity || 0) * (item.price || 0)}}</td>
-            <td> <input type="button" value="X" class="btn btn-primary" ng-click=removeItem(item)></td>             
-          </tr>
-        </tbody>
-        <tfooter>
-        </tfooter>
-      </table>  
-    </div>
+        <!-- Table for Bill Details with ANGULAR JS-->
+        <div class="col-lg-12 col-lg-offset-0 center"
+             ng-init="billModel={items:[{
+             itemname:'',
+             quantity:0,
+             sch: false,
+             mfg: '',
+             batch: '',
+             expdate: '',
+             price: 100,
+             amount: ''
+             }]}">
+          <table class="table table-bordered table-condensed">
+            <thead>
+              <tr class="active">  
+                <th class="col-lg-5" style="text-align:center">ITEM </th>
+                <th class="col-lg-1" style="text-align:center">Quantity</th>              
+                <th class="col-lg-1" style="text-align:center">SCH </th>
+                <th class="col-lg-1" style="text-align:center">MFG. </th>
+                <th class="col-lg-1" style="text-align:center">Batch No. </th>
+                <th class="col-lg-1" style="text-align:center">Exp Data</th>
+                <th class="col-lg-1" style="text-align:center">Price</th>
+                <th class="col-lg-1" style="text-align:center">Amount</th>
+                <th class="col-lg-1"></th>
+              </tr>    
+            </thead>
+            <tbody class="detail">
+              <tr ng-repeat = "item in billModel.items">
+                <td><input class="form-control input-sm" ng-model="item.itemname"></td>
+                <td style="text-align:center"><input class="form-control input-sm" ng-model="item.quantity"></td>
+                <td style="text-align:center">{{item.sch}}</td>
+                <td style="text-align:center">{{item.mfg}}</td>
+                <td style="text-align:center">{{item.batch}}</td>
+                <td style="text-align:center">{{item.expdate}}</td>
+                <td style="text-align:center">{{item.price}}</td>
+                <td style="text-align:center amount">{{(item.quantity || 0) * (item.price || 0)}}</td>
+                <td> <input type="button" value="X" class="btn btn-primary btn-sm" ng-click=removeItem(item)></td>             
+              </tr>
+            </tbody>
+            <tfooter>
+              <tr>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td style="text-align:center" class="emptyrow"><b>Sub Total</b></td>
+                <td style="text-align:center" class="emptyrow total">{{totalPrice()}}</td> 
+              </tr>
+              <tr>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td style="text-align:center" class="emptyrow"><b>Vat 5%</b></td>
+                <td style="text-align:center" class="emptyrow total">{{vat5per()}}</td> 
+              </tr>
+              <tr>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td style="text-align:center" class="emptyrow"><b>Vat 7%</b></td>
+                <td style="text-align:center" class="emptyrow total">{{vat7per()}}</td> 
+              </tr>
+              <tr>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td style="text-align:center" class="emptyrow"><b>Discount</b></td>
+                <td style="text-align:center"><input class="form-control input-sm" ng-model="billModel.discount"></td> 
+              </tr>
+              <tr>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td class="emptyrow"></td>
+                <td style="text-align:center" class="emptyrow"><b>Grand Total</b></td>
+                <td style="text-align:center" class="emptyrow total">{{grandTotal()}}</td> 
+              </tr>       
+            </tfooter>
+          </table>   
+
+      </div> <!-- Panel Body -->
+
+    </div> <!-- Panel Default -->
+    
+   </div>
+
     <div class="form-group col-lg-offset-5">
       <input type="button" value="+" class="btn btn-primary" ng-click="addItem()">
         <button class="btn btn-primary"> SAVE BILL
         </button>  
     </div>  
     <!-- ABOVE:::::: Table for Bill Details with ANGULAR JS-->
-
+</div> <!-- Main DIV for yadDIV -->
 
 <script>
   // $('#mainTable1').editableTableWidget({ editor: $('<input>'), preventColumns: [ 3,4,5,6,7 ] }).numericInputExample();
-
-  $(function(){
-    $('#add').click(function(){
-      addnewrow();
-    });
-
-    $('body').delegate('.remove','click', function(){
-        $(this).parent().parent().remove();
-        total();
-        console.log('Item Name', itemname[1]);
-    });
-
-
-  function total(){
-    var t = 0;
-    $('.amount').each(function(i,e){
-      var amt = $(this).val()-0;
-      t += amt;
-    });
-
-    $('.total').html(t);
-
-  }
-
-  $('.detail').delegate('.quantity, .price','keyup',function(){
-    var tr = $(this).parent().parent();
-    var qty = tr.find('.quantity').val() || 0;
-    var price = tr.find('.price').val() || 0;
-    var amount = qty * price; 
-    tr.find('.amount').val(amount);
-    total();
-
-  });
-
-  function addnewrow(){
-     var n = ($('.detail tr').length-0) + 1;
-     console.log(n);
-     var tr = '<tr> ' + 
-                '<td style="display:none;" class = "no"> ' + n + ' </td> ' +
-                '<td> <input type="text" class="form-control itemname" name = "itemname[]" ng-model="testthis[' + n + ']"> </td> ' +
-                '<td> <input type="text" class="form-control quantity" name = "quantity[]"> </td> ' +
-                '<td> <input type="text" class="form-control sch" name = "sch[]"> </td> ' +
-                '<td> <input type="text" class="form-control mfg" name = "mfg[]"> </td> ' +
-                '<td> <input type="text" class="form-control batch" name = "batch[]"> </td> ' +
-                '<td> <input type="text" class="form-control expdate" name = "expdate[]"> </td> ' +
-                '<td> <input type="text" class="form-control price" name = "price[]"> </td> ' +
-                '<td> <input type="text" class="form-control amount" name = "amount[]"> </td> ' +
-                '<td> <input type="button" value="-" id="remove" class="remove btn btn-primary"></td>' +     
-               '</tr>';
-     $('.detail').append(tr); 
-  }            
-
-  });  
-
 </script>
       
 
