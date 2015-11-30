@@ -1,6 +1,6 @@
 <div>
     <button ng-click="GetAllData()">Get All Data</button> | 
-    <input type="text" name="keyword" ng-model="keyword" required />
+    <input type="text" name="keyword" ng-model="keyword" required ng-keypress="SearchData()"/>
     <button ng-click="SearchData()">Search</button> 
     <hr />
     <ul>
