@@ -35,7 +35,7 @@ app.controller("SalesCtrl", function ($scope, $templateCache, $http){
 			}			
 		}
 
-		if(blank <=1){
+		if(blank == 0){
 			$scope.billModel.items.push({
 	         itemname:undefined,
 	         quantity:0,
