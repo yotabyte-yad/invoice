@@ -112,7 +112,7 @@ app.get("/items", function (req, res){
 	}
 	
 	db.items.findAll({
-		attributes: ['item_name'],
+		attributes: ['id','item_name'],
 		where: where
 	
 	}).then(function(items){
