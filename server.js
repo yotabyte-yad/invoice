@@ -134,6 +134,30 @@ app.get("/logout", function (req, res){
 
 });
 
+//POST for Sales -- Sales details should be saved to
+//
+app.get('/mfgs', function(req, res){
+	var query = req.query;
+	var where = {};
+		where.active = true;
+
+	if(query.hasOwnProperty('q') && query.q.length > 0){
+		where.name = {
+			$like: '%' + query.q + '%'
+		};
+	}	
+
+	db.mfgs.findAll({where: where})
+		.then(function(mfgs){		
+			//console.log(mfgs);
+			res.json(mfgs);			
+	}, function(e){
+		res.status(500).send('Error in fetch (GET) all suppliers: ' + e);
+	});
+});	
+
+
+
 //GET all the MFGs
 app.get('/mfgs', function(req, res){
 	var query = req.query;

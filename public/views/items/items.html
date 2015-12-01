@@ -15,7 +15,7 @@
 		ajax.onload = function() {
 			{
 					var list = JSON.parse(ajax.responseText).map(function(i) {
-					return i.item_name;
+					return i.id + ' --- ' + i.item_name;
 					})
 					new Awesomplete(document.querySelector("#ajax-example input"),{list:list, minChars: 1});
 		}
