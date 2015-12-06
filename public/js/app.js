@@ -1,4 +1,10 @@
-var app = angular.module("ybinvoice",['ngRoute', 'ngSanitize', 'mgcrea.ngStrap','angular-ladda']);
+var app = angular.module("ybinvoice",[
+					'ngRoute', 
+					'ngSanitize', 
+					'mgcrea.ngStrap',
+					'angular-ladda',
+					'ngAnimate'
+					]);
 
 app.config(function($routeProvider) {
   $routeProvider
@@ -39,6 +45,10 @@ app.config(function($routeProvider) {
 		templateUrl: 'views/mfgs/mfgs.html',
 		controller: 'MfgsCtrl'
   })
+  	.when('/mfgslist', {
+		templateUrl: 'views/mfgs/mfgslist.html',
+		controller: 'MfgsListCtrl'
+  })
 // END SECTION --> End point for Manufacturers screens 
 
 // BEGIN SECTION --> End point for Sales screens     	
@@ -65,6 +75,13 @@ app.config(function($routeProvider) {
     startWeek: 1,
 	autoclose: true
   });
+
+  toastr.options = {
+    "closeButton": true,
+    "timeOut": "1000",
+    "showMethod": "fadeIn"
+};
+
 });
 
 var checkLogin = function ($q, $timeout, $http, $location, $rootScope) {
@@ -96,4 +113,6 @@ app.controller("NavCtrl", function($rootScope, $scope, $http, $location){
 			});
 	}
 });
+
+
 

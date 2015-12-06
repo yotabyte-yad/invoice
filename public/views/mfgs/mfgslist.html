@@ -1,0 +1,35 @@
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title">List of Manufacturers</h3>
+  </div>
+  <div class="panel-body">
+      <table class="table table-bordered">
+        <thead>
+          <tr class="active">
+            <th class="col-lg-2">Manufacturer Code</th>
+            <th class="col-lg-5">Manufacturer Name
+                <span ng-click="order = 'name'" class="glyphicon glyphicon-menu-up"></span>
+                <span ng-click="order = '-name'" class="glyphicon glyphicon-menu-down"></span>
+            </th>
+            <th class="col-lg-2">State
+                <span ng-click="order = 'state'" class="glyphicon glyphicon-menu-up"></span>
+                <span ng-click="order = '-state'" class="glyphicon glyphicon-menu-down"></span>
+            </th>
+            <th class="col-lg-2">Pincode</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="mfgs in allMfgs | orderBy:order">
+                  <td>{{mfgs.id}}</td>
+                  <td>{{mfgs.name}}</td>
+                  <td>{{mfgs.state}}</td>
+                  <td>{{mfgs.pincode}}</td>
+                  <td>
+                    <button class="btn btn-success" ng-click="remove(contact._id)">Edit</button>
+                  </td>
+          </tr>
+        </tbody>  
+      </table>  
+  <div>  
+</div>      
