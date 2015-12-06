@@ -260,6 +260,23 @@ db.sequelize.sync({force: false}).then(function(){
 });
 
 
+//List of all the service points
+// 1) Items
+// 	1)	GET   ALL Items
+// 	2)	GET   Specific Item
+// 	3) PUT   Edit Specifict Item
+// 	4) DEL   Delete a Item
+// 	5) POST  Create a new Item
+
+// 2) Supplier
+// 	1)	GET   ALL Suppliers
+// 	2)	GET   Specific Supplier
+// 	3) PUT   Edit Specifict Supplier
+// 	4) DEL   Delete a Supllier
+// 	5) POST  Create a new Supplier
+
+
+
 /*
 db.sequelize.query("SELECT * FROM suppliers ", { type: db.sequelize.QueryTypes.SELECT})
 .then(function(suppliers) {
