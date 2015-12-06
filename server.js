@@ -134,8 +134,8 @@ app.get("/logout", function (req, res){
 
 });
 
-//POST for Sales -- Sales details should be saved to
-//
+
+//GET - Fetch all the manufacturers
 app.get('/mfgs', function(req, res){
 	var query = req.query;
 	var where = {};
@@ -155,8 +155,6 @@ app.get('/mfgs', function(req, res){
 		res.status(500).send('Error in fetch (GET) all suppliers: ' + e);
 	});
 });	
-
-
 
 //GET a specific MFGs
 app.get('/mfgs/:id', function(req, res){
@@ -178,6 +176,24 @@ app.get('/mfgs/:id', function(req, res){
 		res.status(500).send('Error in fetch (GET) all suppliers: ' + e);
 	});
 });	
+
+//POST - Add a new manufacturer to database
+app.post('/mfgs', function(req, res){
+	var body = _.pick(req.body, 'name', 'address', 'state','pincode', 'active');
+	body.name = body.name.trim();
+	body.address = body.address.trim();
+	body.state = body.state.trim();
+	body.pincode = body.pincode.trim();
+	console.log(body);
+	
+	db.mfgs.create(body).then(function(mfgs){
+		res.json(mfgs.toJSON());
+	}, function(e){
+		res.status(400).json(e);
+		console.log(e);
+	});
+
+});
 
 //GET all the suppliers
 app.get('/suppliers', function(req, res){

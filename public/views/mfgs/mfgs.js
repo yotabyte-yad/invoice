@@ -8,7 +8,7 @@ app.controller("MfgsCtrl", function ($location, $scope, $http, $rootScope){
 	$scope.GetAllData = function () {
 	    $http.get('http://localhost:5000/mfgs')
 	    .success(function (data, status, headers, config) {
-	        $scope.Details = data;
+	        $scope.allMfgs = data;
 	    })
 	    .error(function (data, status, header, config) {
 	        $scope.ResponseDetails = "Data: " + data +
@@ -16,9 +16,18 @@ app.controller("MfgsCtrl", function ($location, $scope, $http, $rootScope){
 	            "<br />headers: " + jsonFilter(header) +
 	            "<br />config: " + jsonFilter(config);
 	    });
+	    console.log('got data');
 	};
 
 	$scope.GetAllData();
+
+	$scope.createMfgs = function() {
+		//console.log('from controller', $scope.mfgsModel);
+		$http.post('/mfgs', $scope.contact).success(function(response){
+			console.log(response);
+			refresh();
+		})
+	};
 
 	$scope.SearchData = function () {
 
@@ -57,12 +66,5 @@ app.controller("MfgsCtrl", function ($location, $scope, $http, $rootScope){
 		// 	};
 		// //fetch all the mfgs on page load
 		// refresh();	
-	
-	$scope.createMfgs = function(){
-		
-	}
-
-
-
 });	
 	
