@@ -23,9 +23,8 @@ app.controller("MfgsCtrl", function ($location, $scope, $http, $rootScope){
 
 	$scope.createMfgs = function() {
 		//console.log('from controller', $scope.mfgsModel);
-		$http.post('/mfgs', $scope.contact).success(function(response){
+		$http.post('/mfgs', $scope.mfgsModel).success(function(response){
 			console.log(response);
-			refresh();
 		})
 	};
 
