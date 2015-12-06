@@ -158,8 +158,8 @@ app.get('/mfgs', function(req, res){
 
 
 
-//GET all the MFGs
-app.get('/mfgs', function(req, res){
+//GET a specific MFGs
+app.get('/mfgs/:id', function(req, res){
 	var query = req.query;
 	var where = {};
 		where.active = true;
