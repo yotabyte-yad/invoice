@@ -3,7 +3,8 @@ var app = angular.module("ybinvoice",['ngRoute', 'ngSanitize', 'mgcrea.ngStrap',
 app.config(function($routeProvider) {
   $routeProvider
 	.when('/home', {
-		templateUrl: 'views/home.html'
+		// Sales page should be the default page
+		templateUrl: 'views/sales/sales.html'
   })
   	.when('/login', {
 		templateUrl: 'views/login/login.html',
@@ -33,10 +34,14 @@ app.config(function($routeProvider) {
 		templateUrl: 'views/supplier/supplier.html',
 		controller: 'SupplierCtrl'
   })
+// BEGIN SECTION --> End point for Manufacturers screens  	
   	.when('/mfgs', {
 		templateUrl: 'views/mfgs/mfgs.html',
 		controller: 'MfgsCtrl'
   })
+// END SECTION --> End point for Manufacturers screens 
+
+// BEGIN SECTION --> End point for Sales screens     	
     .when('/sales', {
 		templateUrl: 'views/sales/sales.html',
 		controller: 'SalesCtrl'
