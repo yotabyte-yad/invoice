@@ -42,7 +42,7 @@ app.config(function($routeProvider) {
   })
 // BEGIN SECTION --> End point for Manufacturers screens  	
   	.when('/mfgs', {
-		templateUrl: 'views/mfgs/mfgs.html',
+		templateUrl: 'views/mfgs/mfgscreate.html',
 		controller: 'MfgsCtrl'
   })
   	.when('/mfgslist', {
