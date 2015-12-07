@@ -36,10 +36,17 @@ app.config(function($routeProvider) {
 		templateUrl: 'views/purchase/purchase.html',
 		controller: 'PurchaseCtrl'
   })
+// BEGIN SECTION --> End point for Suppliers screens  	
   	.when('/supplier', {
 		templateUrl: 'views/supplier/supplier.html',
 		controller: 'SupplierCtrl'
   })
+  	.when('/supplierlist', {
+		templateUrl: 'views/supplier/supplierslist.html',
+		controller: 'supplierListCtrl'
+  })
+
+
 // BEGIN SECTION --> End point for Manufacturers screens  	
   	.when('/mfgs', {
 		templateUrl: 'views/mfgs/mfgscreate.html',

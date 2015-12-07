@@ -224,13 +224,13 @@ app.get('/suppliers', function(req, res){
 
 
 	db.suppliers.findAll({
-		 attributes : ['id', 'name']
+		 where: where
 	})
 		.then(function(suppliers){
 		
 		res.json(suppliers);
 		
-		console.log(suppliers.description);
+		//console.log(suppliers.description);
 	}, function(e){
 		res.status(500).send('Error in Find all   :' + e);
 	});
