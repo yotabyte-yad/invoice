@@ -9,14 +9,14 @@ app.factory('Manufacturers', ['$http', function($http){
 	};
 
 	create = function(mfgsModel) {
-		console.log('appServicesCreate', mfgsModel);
+		//console.log('appServicesCreate', mfgsModel);
 		return $http.post(urlBase, mfgsModel);
 	};	
 
 	update = function(mfgsModel){
-		console.log('appServicesUpdate', mfgsModel);
+		//console.log('appServicesUpdate', mfgsModel);
 		//return mfgsModel;
-		return $http.put(urlBase + '/' + mfgsModel.id, mfgsModel)
+		return $http.put(urlBase + '/' + mfgsModel.id, mfgsModel);
 	}
 
 	 return {
