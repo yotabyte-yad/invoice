@@ -1,5 +1,6 @@
 app.controller("MfgsListCtrl", function ($location, $scope, $http, $rootScope){
 	$scope.mfgsModel = {};
+	$rootScope.rootMfgs = {};
 
 	$scope.GetAllData = function () {
 	    $http.get('http://localhost:5000/mfgs')
@@ -18,6 +19,11 @@ app.controller("MfgsListCtrl", function ($location, $scope, $http, $rootScope){
 
 	$scope.GetAllData();
 
+	$scope.goToEditScreen = function(id){
+		$scope.selectedMfgs = $scope.allMfgs;
+		console.log('mfgslist.js', $scope.allMfgs);
+		$location.url("/editmfgs/" + id);
+	}
 
 	$scope.SearchData = function () {
             var parameters = {

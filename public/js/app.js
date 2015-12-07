@@ -49,6 +49,10 @@ app.config(function($routeProvider) {
 		templateUrl: 'views/mfgs/mfgslist.html',
 		controller: 'MfgsListCtrl'
   })
+    .when('/editmfgs/:id', {
+		templateUrl: 'views/mfgs/mfgsedit.html',
+		controller: 'mfgsEditCtrl'
+  })	
 // END SECTION --> End point for Manufacturers screens 
 
 // BEGIN SECTION --> End point for Sales screens     	
@@ -64,9 +68,9 @@ app.config(function($routeProvider) {
 		templateUrl: 'views/items/items.html',
 		controller: 'ItemsCtrl'
   })
-  	.otherwise({
-		redirectTo: '/home'
-  })
+  // 	.otherwise({
+		// redirectTo: '/home'
+  // })
 })
 
 .config(function($datepickerProvider) {
@@ -115,4 +119,29 @@ app.controller("NavCtrl", function($rootScope, $scope, $http, $location){
 });
 
 
+///Starting looking Service or Factory as an alternative
 
+app.service('ManufacturerService', function(){
+	this.getAll = function (){
+		///
+		$http.get('http://localhost:5000/mfgs')
+	    .success(function (data, status, headers, config) {
+	        $scope.allMfgs = data;
+	    })
+	    .error(function (data, status, header, config) {
+	        $scope.ResponseDetails = "Data: " + data +
+	            "<br />status: " + status +
+	            "<br />headers: " + jsonFilter(header) +
+	            "<br />config: " + jsonFilter(config);
+	    });
+	    console.log('ManufacturerService', $scope.allMfgs);	
+		///
+		$scope.createMfgs = function(mfgsmodel) {
+				$http.post('/mfgs', mfgsModel).success(function(response){
+					console.log('ManufacturerService', response.mfgs);
+				})
+			};
+
+		///
+	}
+});
