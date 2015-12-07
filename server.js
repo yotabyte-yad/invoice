@@ -156,7 +156,7 @@ app.get('/mfgs', function(req, res){
 	});
 });	
 
-//GET a specific MFGs
+//GET a specific Manufacturer
 app.get('/mfgs/:id', function(req, res){
 	var query = req.query;
 	var where = {};
@@ -195,6 +195,27 @@ app.post('/mfgs', function(req, res){
 
 });
 
+//PUT Request for updating a Manufacturer
+
+app.put ('/mfgs/:id', function(req, res){
+
+	var body = _.pick(req.body, 'name', 'address', 'state','pincode', 'active');
+	console.log('updating', body);
+	db.mfgs.findById(todoId).then( function (mfgs){
+			if(mfgs){
+				return mfgs.update(body);
+
+			}else
+
+			{
+				res.status(404).send("ID not found to update");
+			}
+	res.json(mfgs);
+	});
+}	
+
+
+
 //GET all the suppliers
 app.get('/suppliers', function(req, res){
 	//var query = req.query;
@@ -215,6 +236,9 @@ app.get('/suppliers', function(req, res){
 	});
 
 });				
+
+
+
 
 	
 //POST /suppliers

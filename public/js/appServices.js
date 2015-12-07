@@ -7,13 +7,18 @@ app.factory('Manufacturers', ['$http', function($http){
 	};
 
 	create = function(mfgsModel) {
-		console.log('appServices', mfgsModel);
+		console.log('appServicesCreate', mfgsModel);
 		return $http.post(urlBase, mfgsModel);
 	};	
 
+	update = function(mfgsModel){
+		console.log('appServicesUpdate', mfgsModel);
+	}
+
 	 return {
 	 	getAll: getAll,
-	 	create: create
+	 	create: create,
+	 	update: update
 	 };
 
 }]);

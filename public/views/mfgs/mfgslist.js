@@ -1,6 +1,5 @@
 app.controller("MfgsListCtrl", function ($location, $scope, $http, $rootScope, Manufacturers){
 	$scope.mfgsModel = {};
-	$rootScope.rootMfgs = {};
 
 	$scope.GetAllData = function () {
 	    //$http.get('http://localhost:5000/mfgs')
