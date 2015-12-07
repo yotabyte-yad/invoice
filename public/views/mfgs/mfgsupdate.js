@@ -1,4 +1,4 @@
-app.controller("mfgsUpdateCtrl", function ($location, $scope, $http, Manufacturers, $routeParams){
+app.controller("mfgsUpdateCtrl", function ($location, $scope, Manufacturers, $timeout){
 	
 	//console.log($routeParams);
 
@@ -13,13 +13,13 @@ app.controller("mfgsUpdateCtrl", function ($location, $scope, $http, Manufacture
 
 	$scope.UpdateManufacturer = function(){
 		Manufacturers.update($scope.mfgsModel)
-		.success(function(response){
-			toastr.success('Manufacturer <b>' + $scope.mfgsModel.name +'</b> updated successfully');				
+		.success(function(){				
 		})
 		.error(function(){
 				console.log('Error while updating Manufacturers');
 		});
 	  // /toastr.success('Manufacturer updated successfully');
+	  toastr.success('Changes saved successfully');	
 	};
 
 });	
