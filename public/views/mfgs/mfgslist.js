@@ -25,7 +25,7 @@ app.controller("MfgsListCtrl", function ($location, $scope, $http, $rootScope, M
 			      break;
 			  }
 			}
-		console.log('LIST EDIT', Manufacturers.manufacturer);
+		//console.log('LIST EDIT', Manufacturers.manufacturer);
 		$location.url("/editmfgs/" + id);
 	}
 

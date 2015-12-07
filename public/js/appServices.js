@@ -15,6 +15,8 @@ app.factory('Manufacturers', ['$http', function($http){
 
 	update = function(mfgsModel){
 		console.log('appServicesUpdate', mfgsModel);
+		//return mfgsModel;
+		return $http.put(urlBase + '/' + mfgsModel.id, mfgsModel)
 	}
 
 	 return {

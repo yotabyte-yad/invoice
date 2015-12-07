@@ -199,9 +199,9 @@ app.post('/mfgs', function(req, res){
 
 app.put ('/mfgs/:id', function(req, res){
 
-	var body = _.pick(req.body, 'name', 'address', 'state','pincode', 'active');
-	console.log('updating', body);
-	db.mfgs.findById(todoId).then( function (mfgs){
+	var body = _.pick(req.body, 'id', 'name', 'address', 'state','pincode', 'active');
+	//console.log('updating', body);
+	db.mfgs.findById(req.body.id).then( function (mfgs){
 			if(mfgs){
 				return mfgs.update(body);
 
