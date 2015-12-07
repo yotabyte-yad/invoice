@@ -180,12 +180,11 @@ app.get('/mfgs/:id', function(req, res){
 //POST - Add a new manufacturer to database
 app.post('/mfgs', function(req, res){
 	var body = _.pick(req.body, 'name', 'address', 'state','pincode', 'active');
-	console.log('Server ', body);
 	body.name = body.name.trim();
 	body.address = body.address.trim();
 	body.state = body.state.trim();
 	//body.pincode = body.pincode.trim();
-	console.log(body);
+	//console.log(body);
 	
 	db.mfgs.create(body).then(function(mfgs){
 		res.json(mfgs.toJSON());
