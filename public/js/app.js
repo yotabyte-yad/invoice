@@ -1,4 +1,10 @@
-var app = angular.module("ybinvoice",['ngRoute', 'ngSanitize', 'mgcrea.ngStrap','angular-ladda']);
+var app = angular.module("ybinvoice",[
+					'ngRoute', 
+					'ngSanitize', 
+					'mgcrea.ngStrap',
+					'angular-ladda',
+					'ngAnimate'
+					]);
 
 app.config(function($routeProvider) {
   $routeProvider
@@ -36,9 +42,17 @@ app.config(function($routeProvider) {
   })
 // BEGIN SECTION --> End point for Manufacturers screens  	
   	.when('/mfgs', {
-		templateUrl: 'views/mfgs/mfgs.html',
+		templateUrl: 'views/mfgs/mfgscreate.html',
 		controller: 'MfgsCtrl'
   })
+  	.when('/mfgslist', {
+		templateUrl: 'views/mfgs/mfgslist.html',
+		controller: 'MfgsListCtrl'
+  })
+    .when('/editmfgs/:id', {
+		templateUrl: 'views/mfgs/mfgsupdate.html',
+		controller: 'mfgsUpdateCtrl'
+  })	
 // END SECTION --> End point for Manufacturers screens 
 
 // BEGIN SECTION --> End point for Sales screens     	
@@ -54,9 +68,9 @@ app.config(function($routeProvider) {
 		templateUrl: 'views/items/items.html',
 		controller: 'ItemsCtrl'
   })
-  	.otherwise({
-		redirectTo: '/home'
-  })
+  // 	.otherwise({
+		// redirectTo: '/home'
+  // })
 })
 
 .config(function($datepickerProvider) {
@@ -65,6 +79,13 @@ app.config(function($routeProvider) {
     startWeek: 1,
 	autoclose: true
   });
+
+  toastr.options = {
+    "closeButton": true,
+    "timeOut": "2000",
+    "showMethod": "fadeIn"
+};
+
 });
 
 var checkLogin = function ($q, $timeout, $http, $location, $rootScope) {
@@ -96,4 +117,3 @@ app.controller("NavCtrl", function($rootScope, $scope, $http, $location){
 			});
 	}
 });
-

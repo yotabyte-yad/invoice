@@ -1,14 +1,11 @@
-app.controller("MfgsCtrl", function ($location, $scope, $http, $rootScope){
-	//TODO
+app.controller("MfgsListCtrl", function ($location, $scope, $http, $rootScope, Manufacturers){
 	$scope.mfgsModel = {};
-	$scope.allMfgs = {};
-	$scope.order = 'name';
-	
 
 	$scope.GetAllData = function () {
-	    $http.get('http://localhost:5000/mfgs')
+	    //$http.get('http://localhost:5000/mfgs')
+	    Manufacturers.getAll()
 	    .success(function (data, status, headers, config) {
-	        $scope.Details = data;
+	        $scope.allMfgs = data;	        
 	    })
 	    .error(function (data, status, header, config) {
 	        $scope.ResponseDetails = "Data: " + data +
@@ -16,12 +13,27 @@ app.controller("MfgsCtrl", function ($location, $scope, $http, $rootScope){
 	            "<br />headers: " + jsonFilter(header) +
 	            "<br />config: " + jsonFilter(config);
 	    });
+	    //toastr.success('List displayed successfully'); 	    
 	};
 
 	$scope.GetAllData();
 
-	$scope.SearchData = function () {
+	$scope.goToEditScreen = function(id){
+			for (var i = 0; i < $scope.allMfgs.length; i++) {
+			  var currManu = $scope.allMfgs[i];
+			  if (currManu.id === id) {
+			      Manufacturers.manufacturer = currManu;
+			      break;
+			  }
+			}
+		//console.log('LIST EDIT', Manufacturers.manufacturer);
+		$location.url("/editmfgs/" + id);
+	}
 
+
+
+
+	$scope.SearchData = function () {
             var parameters = {
                 q: $scope.keyword
             };
@@ -41,28 +53,4 @@ app.controller("MfgsCtrl", function ($location, $scope, $http, $rootScope){
             });
         };
 
-		// var refresh = function(){
-		// 		console.log(parameters);
-		// 		$http({
-		// 			url: 'http://localhost:5000/mfgs',
-		// 			method: 'GET',
-		// 			params: {q : parameters}
-		// 		});
-
-				// $http.get('http://localhost:5000/mfgs').success(function (response){
-				// 	console.log("Got the requested data");
-				// 	console.log(response);
-				// 	$scope.allMfgs = response;					
-				// });
-		// 	};
-		// //fetch all the mfgs on page load
-		// refresh();	
-	
-	$scope.createMfgs = function(){
-		
-	}
-
-
-
-});	
-	
+});
