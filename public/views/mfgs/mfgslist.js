@@ -1,20 +1,20 @@
-app.controller("MfgsListCtrl", function ($location, $scope, $http, $rootScope){
+app.controller("MfgsListCtrl", function ($location, $scope, $http, $rootScope, Manufacturers){
 	$scope.mfgsModel = {};
 	$rootScope.rootMfgs = {};
 
 	$scope.GetAllData = function () {
-	    $http.get('http://localhost:5000/mfgs')
+	    //$http.get('http://localhost:5000/mfgs')
+	    Manufacturers.getAll()
 	    .success(function (data, status, headers, config) {
 	        $scope.allMfgs = data;
+	        toastr.success('Success, list is displayed');
 	    })
 	    .error(function (data, status, header, config) {
 	        $scope.ResponseDetails = "Data: " + data +
 	            "<br />status: " + status +
 	            "<br />headers: " + jsonFilter(header) +
 	            "<br />config: " + jsonFilter(config);
-	    });
-	    console.log($scope.allMfgs);
-	    toastr.success('Success, list is displayed');
+	    }); 	    
 	};
 
 	$scope.GetAllData();

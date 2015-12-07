@@ -82,7 +82,7 @@ app.config(function($routeProvider) {
 
   toastr.options = {
     "closeButton": true,
-    "timeOut": "1000",
+    "timeOut": "2000",
     "showMethod": "fadeIn"
 };
 
@@ -115,33 +115,5 @@ app.controller("NavCtrl", function($rootScope, $scope, $http, $location){
 				$rootScope.currentUser = null;
 				$location.url("/home");
 			});
-	}
-});
-
-
-///Starting looking Service or Factory as an alternative
-
-app.service('ManufacturerService', function(){
-	this.getAll = function (){
-		///
-		$http.get('http://localhost:5000/mfgs')
-	    .success(function (data, status, headers, config) {
-	        $scope.allMfgs = data;
-	    })
-	    .error(function (data, status, header, config) {
-	        $scope.ResponseDetails = "Data: " + data +
-	            "<br />status: " + status +
-	            "<br />headers: " + jsonFilter(header) +
-	            "<br />config: " + jsonFilter(config);
-	    });
-	    console.log('ManufacturerService', $scope.allMfgs);	
-		///
-		$scope.createMfgs = function(mfgsmodel) {
-				$http.post('/mfgs', mfgsModel).success(function(response){
-					console.log('ManufacturerService', response.mfgs);
-				})
-			};
-
-		///
 	}
 });
