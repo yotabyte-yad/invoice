@@ -3,6 +3,11 @@
     <h3 class="panel-title">List of Manufacturers</h3>
   </div>
   <div class="panel-body">
+      <form class = "form-inline well well-sm">
+        <div class="form-group">
+            <input type="text" class="form-control" id="name" ng-model="search.name" placeholder="Search on name..." />
+        </div>
+      </form>
       <table class="table table-bordered table-condensed">
         <thead>
           <tr class="active">
@@ -20,7 +25,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="mfgs in allMfgs | orderBy:order">
+          <tr ng-repeat="mfgs in allMfgs | filter:search | orderBy:order">
                   <td> {{mfgs.id}} </td>
                   <td>{{mfgs.name}}</td>
                   <td>{{mfgs.state}}</td>
