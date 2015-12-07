@@ -19,5 +19,4 @@ app.controller("supplierListCtrl", function ($location, $scope, $http, Suppliers
 
 	$scope.GetAllData();
 
-
 });

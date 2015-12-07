@@ -22,6 +22,13 @@ module.exports = function(sequelize, DataTypes) {
 				len: [1, 250]
 			}
 		},
+		tin: {
+			type: DataTypes.STRING,
+			allowNull: false,
+			validate: {
+				len: [1, 250]
+			}
+		},
 		pincode: {
 			type: DataTypes.STRING,
 			allowNull: false,

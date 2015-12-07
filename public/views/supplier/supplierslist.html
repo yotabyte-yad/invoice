@@ -25,11 +25,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="mfgs in allMfgs | filter:search | orderBy:order">
-                  <td> {{mfgs.id}} </td>
-                  <td>{{mfgs.name}}</td>
-                  <td>{{mfgs.state}}</td>
-                  <td>{{mfgs.pincode}}</td>
+          <tr ng-repeat="suppliers in allSuppliers | filter:search | orderBy:order">
+                  <td> {{suppliers.id}} </td>
+                  <td>{{suppliers.name}}</td>
+                  <td>{{suppliers.tin}}</td>
+                  <td>{{suppliers.contact}}</td>
                   <td>
                     <button class="btn btn-success btn-sm" ng-click="goToEditScreen(mfgs.id)">Edit</button>
                   </td>
