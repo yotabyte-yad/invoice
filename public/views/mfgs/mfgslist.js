@@ -1,11 +1,11 @@
-app.controller("MfgsListCtrl", function ($location, $scope, $http, $rootScope){
+app.controller("MfgsListCtrl", function ($location, $scope, $http, $rootScope, Manufacturers){
 	$scope.mfgsModel = {};
-	$rootScope.rootMfgs = {};
 
 	$scope.GetAllData = function () {
-	    $http.get('http://localhost:5000/mfgs')
+	    //$http.get('http://localhost:5000/mfgs')
+	    Manufacturers.getAll()
 	    .success(function (data, status, headers, config) {
-	        $scope.allMfgs = data;
+	        $scope.allMfgs = data;	        
 	    })
 	    .error(function (data, status, header, config) {
 	        $scope.ResponseDetails = "Data: " + data +
@@ -13,17 +13,25 @@ app.controller("MfgsListCtrl", function ($location, $scope, $http, $rootScope){
 	            "<br />headers: " + jsonFilter(header) +
 	            "<br />config: " + jsonFilter(config);
 	    });
-	    console.log($scope.allMfgs);
-	    toastr.success('Success, list is displayed');
+	    //toastr.success('List displayed successfully'); 	    
 	};
 
 	$scope.GetAllData();
 
 	$scope.goToEditScreen = function(id){
-		$scope.selectedMfgs = $scope.allMfgs;
-		console.log('mfgslist.js', $scope.allMfgs);
+			for (var i = 0; i < $scope.allMfgs.length; i++) {
+			  var currManu = $scope.allMfgs[i];
+			  if (currManu.id === id) {
+			      Manufacturers.manufacturer = currManu;
+			      break;
+			  }
+			}
+		//console.log('LIST EDIT', Manufacturers.manufacturer);
 		$location.url("/editmfgs/" + id);
 	}
+
+
+
 
 	$scope.SearchData = function () {
             var parameters = {

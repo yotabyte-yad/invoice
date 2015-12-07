@@ -156,7 +156,7 @@ app.get('/mfgs', function(req, res){
 	});
 });	
 
-//GET a specific MFGs
+//GET a specific Manufacturer
 app.get('/mfgs/:id', function(req, res){
 	var query = req.query;
 	var where = {};
@@ -180,12 +180,11 @@ app.get('/mfgs/:id', function(req, res){
 //POST - Add a new manufacturer to database
 app.post('/mfgs', function(req, res){
 	var body = _.pick(req.body, 'name', 'address', 'state','pincode', 'active');
-	console.log(body);
 	body.name = body.name.trim();
 	body.address = body.address.trim();
 	body.state = body.state.trim();
 	//body.pincode = body.pincode.trim();
-	console.log(body);
+	//console.log(body);
 	
 	db.mfgs.create(body).then(function(mfgs){
 		res.json(mfgs.toJSON());
@@ -195,6 +194,27 @@ app.post('/mfgs', function(req, res){
 	});
 
 });
+
+//PUT Request for updating a Manufacturer
+
+app.put ('/mfgs/:id', function(req, res){
+
+	var body = _.pick(req.body, 'id', 'name', 'address', 'state','pincode', 'active');
+	//console.log('updating', body);
+	db.mfgs.findById(req.body.id).then( function (mfgs){
+			if(mfgs){
+				return mfgs.update(body);
+
+			}else
+
+			{
+				res.status(404).send("ID not found to update");
+			}
+	res.json(mfgs);
+	});
+});	
+
+
 
 //GET all the suppliers
 app.get('/suppliers', function(req, res){
@@ -216,6 +236,9 @@ app.get('/suppliers', function(req, res){
 	});
 
 });				
+
+
+
 
 	
 //POST /suppliers

@@ -21,10 +21,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="mfgs in allMfgs | orderBy:order">
-                  <td>
-                    <a ng-href="#/editmfgs/{{mfgs.id}}"> {{mfgs.id}}
-                    </a>
-                  </td>
+                  <td> {{mfgs.id}} </td>
                   <td>{{mfgs.name}}</td>
                   <td>{{mfgs.state}}</td>
                   <td>{{mfgs.pincode}}</td>
