@@ -3,7 +3,7 @@
     <h3 class="panel-title">List of Manufacturers</h3>
   </div>
   <div class="panel-body">
-      <table class="table table-bordered">
+      <table class="table table-bordered table-condensed">
         <thead>
           <tr class="active">
             <th class="col-lg-2">Manufacturer Code</th>
@@ -21,12 +21,15 @@
         </thead>
         <tbody>
           <tr ng-repeat="mfgs in allMfgs | orderBy:order">
-                  <td>{{mfgs.id}}</td>
+                  <td>
+                    <a ng-href="#/editmfgs/{{mfgs.id}}"> {{mfgs.id}}
+                    </a>
+                  </td>
                   <td>{{mfgs.name}}</td>
                   <td>{{mfgs.state}}</td>
                   <td>{{mfgs.pincode}}</td>
                   <td>
-                    <button class="btn btn-success" ng-click="remove(contact._id)">Edit</button>
+                    <button class="btn btn-success btn-sm" ng-click="goToEditScreen(mfgs.id)">Edit</button>
                   </td>
           </tr>
         </tbody>  

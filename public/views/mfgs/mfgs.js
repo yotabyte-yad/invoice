@@ -6,7 +6,7 @@ app.controller("MfgsCtrl", function ($location, $scope, $http, $rootScope){
 	
 	$scope.createMfgs = function() {
 		$http.post('/mfgs', $scope.mfgsModel).success(function(response){
-			console.log(response);
+			console.log(response.mfgs);
 		})
 	};
 });	
