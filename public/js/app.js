@@ -50,8 +50,8 @@ app.config(function($routeProvider) {
 		controller: 'MfgsListCtrl'
   })
     .when('/editmfgs/:id', {
-		templateUrl: 'views/mfgs/mfgsedit.html',
-		controller: 'mfgsEditCtrl'
+		templateUrl: 'views/mfgs/mfgsupdate.html',
+		controller: 'mfgsUpdateCtrl'
   })	
 // END SECTION --> End point for Manufacturers screens 
 

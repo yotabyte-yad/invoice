@@ -8,15 +8,15 @@ app.controller("MfgsCtrl", function ($location, $scope, Manufacturers, $timeout)
 
 		Manufacturers.create($scope.mfgsModel)
 		.success(function(response){
-					$timeout(function(){															
+					toastr.success('Manufacturer <b>' + $scope.mfgsModel.name +'</b> created successfully');	
+					$timeout(function(){														
 					$location.url("/mfgslist");
-				}, 3000);	
-		toastr.success('Manufacturer <b>' + $scope.mfgsModel.name +'</b> created successfully');				
+				}, 3000);						
 		})
 		.error(function(){
 			console.log('Error while adding this Manufacturer');
-		});
-
+			toastr.error('<b>Seems there is an issue </b>');
+		});		
 	};
 													
 });	

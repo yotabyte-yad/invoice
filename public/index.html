@@ -47,7 +47,7 @@
 <script src="views/search/search.js"></script>
 <script src="views/mfgs/mfgscreate.js"></script>
 <script src="views/mfgs/mfgslist.js"></script>
-<script src="views/mfgs/mfgsedit.js"></script>
+<script src="views/mfgs/mfgsupdate.js"></script>
 <body ng-app="ybinvoice">
 <!--	
 	<nav ng-controller="NavCtrl">
@@ -81,10 +81,10 @@
 			<ul class="nav navbar-nav">
 				<li><a href="#login">Login</a></li>
 				<li><a href="#home">Home</a></li>
-				<li><a href="#items">Items</a></li>
-				<li><a href="#supplier">Supplier</a></li>
+				<li><a href="#items">List Items</a></li>
+				<li><a href="#supplier">List Suppliers</a></li>
 				<li><a href="#sales">Sales Register</a></li>
-				<li><a href="#logout" ng-click="logout()">Logout</a></li>
+				<!-- <li><a href="#logout" ng-click="logout()">Logout</a></li> -->
 				<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 					Dropdown <span class="caret"></span>
@@ -103,7 +103,7 @@
 			</ul>
 			<form class="navbar-form navbar-right" role="search">
 				<div class="form-group">
-				<input type="text" class="form-control" placeholder="Search">
+				<input type="text" class="form-control" placeholder="Item Search">
 				</div>
 			</form>
 		</div>

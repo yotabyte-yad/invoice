@@ -12,7 +12,8 @@ app.controller("MfgsListCtrl", function ($location, $scope, $http, $rootScope, M
 	            "<br />status: " + status +
 	            "<br />headers: " + jsonFilter(header) +
 	            "<br />config: " + jsonFilter(config);
-	    }); 	    
+	    });
+	    //toastr.success('List displayed successfully'); 	    
 	};
 
 	$scope.GetAllData();
