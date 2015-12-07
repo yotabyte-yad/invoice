@@ -2,6 +2,8 @@ app.factory('Manufacturers', ['$http', function($http){
 	var urlBase = 'http://localhost:5000/mfgs';
 	//var Manufacturers = {};
 
+	var manufacturer = {};
+
 	getAll = function(){
 		return $http.get(urlBase);
 	};
@@ -16,6 +18,7 @@ app.factory('Manufacturers', ['$http', function($http){
 	}
 
 	 return {
+	 	manufacturer: manufacturer,
 	 	getAll: getAll,
 	 	create: create,
 	 	update: update

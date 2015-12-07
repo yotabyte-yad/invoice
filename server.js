@@ -212,7 +212,7 @@ app.put ('/mfgs/:id', function(req, res){
 			}
 	res.json(mfgs);
 	});
-}	
+});	
 
 
 

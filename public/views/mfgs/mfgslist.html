@@ -21,15 +21,12 @@
         </thead>
         <tbody>
           <tr ng-repeat="mfgs in allMfgs | orderBy:order">
-                  <td>
-                    <a ng-href="#/editmfgs/{{mfgs.id}}"> {{mfgs.id}}
-                    </a>
-                  </td>
+                  <td> {{mfgs.id}} </td>
                   <td>{{mfgs.name}}</td>
                   <td>{{mfgs.state}}</td>
                   <td>{{mfgs.pincode}}</td>
                   <td>
-                    <button class="btn btn-success btn-sm" ng-click="updateManufacturer(mfgs.id)">Edit</button>
+                    <button class="btn btn-success btn-sm" ng-click="goToEditScreen(mfgs.id)">Edit</button>
                   </td>
           </tr>
         </tbody>  

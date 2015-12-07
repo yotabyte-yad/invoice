@@ -18,10 +18,19 @@ app.controller("MfgsListCtrl", function ($location, $scope, $http, $rootScope, M
 	$scope.GetAllData();
 
 	$scope.goToEditScreen = function(id){
-		$scope.selectedMfgs = $scope.allMfgs;
-		console.log('mfgslist.js', $scope.allMfgs);
+			for (var i = 0; i < $scope.allMfgs.length; i++) {
+			  var currManu = $scope.allMfgs[i];
+			  if (currManu.id === id) {
+			      Manufacturers.manufacturer = currManu;
+			      break;
+			  }
+			}
+		console.log('LIST EDIT', Manufacturers.manufacturer);
 		$location.url("/editmfgs/" + id);
 	}
+
+
+
 
 	$scope.SearchData = function () {
             var parameters = {
