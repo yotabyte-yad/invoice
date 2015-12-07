@@ -27,3 +27,20 @@ app.factory('Manufacturers', ['$http', function($http){
 	 };
 
 }]);
+
+app.factory('Suppliers',['$http', function($http){
+	// variable stores one supplier record, useful during editing
+	var supplier = {};
+  var urlBase = 'http://localhost:5000/suppliers';
+
+  getAll = function(){
+		return $http.get(urlBase);
+	};
+
+	return {
+	 	supplier: supplier,
+	 	getAll: getAll
+	};
+
+
+}]);
