@@ -37,9 +37,9 @@ app.config(function($routeProvider) {
 		controller: 'PurchaseCtrl'
   })
 // BEGIN SECTION --> End point for Suppliers screens  	
-  	.when('/supplier', {
-		templateUrl: 'views/supplier/supplier.html',
-		controller: 'SupplierCtrl'
+  	.when('/createSupplier', {
+		templateUrl: 'views/supplier/createSupplier.html',
+		controller: 'createSupplierCtrl'
   })
   	.when('/supplierlist', {
 		templateUrl: 'views/supplier/supplierslist.html',
