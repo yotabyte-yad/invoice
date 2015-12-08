@@ -1,5 +1,5 @@
 //Test 
-app.controller("SupplierCtrl", function ($location, $scope, $http, $rootScope){
+app.controller("createSupplierCtrl", function ($location, $scope, $http, $rootScope){
 	//console.log($scope.item);
 	//console.log("clicked ItemsCtrl");
 	//$scope.item.barcode = 12345;
