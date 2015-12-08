@@ -8,6 +8,13 @@ module.exports = function(sequelize, DataTypes) {
 				len: [1, 250]
 			}
 		},
+		tin: {
+			type: DataTypes.STRING,
+			allowNull: false,
+			validate: {
+				len: [1, 250]
+			}
+		},
 		address: {
 			type: DataTypes.STRING,
 			allowNull: false,
@@ -22,14 +29,28 @@ module.exports = function(sequelize, DataTypes) {
 				len: [1, 250]
 			}
 		},
-		tin: {
+		pincode: {
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
 				len: [1, 250]
 			}
 		},
-		pincode: {
+		phone: {
+			type: DataTypes.STRING,
+			allowNull: false,
+			validate: {
+				len: [1, 250]
+			}
+		},
+		person: {
+			type: DataTypes.STRING,
+			allowNull: false,
+			validate: {
+				len: [1, 250]
+			}
+		},
+		email: {
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
