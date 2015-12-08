@@ -1,7 +1,7 @@
 //Test 
 app.controller("SupplierCtrl", function ($location, $scope, $http, $rootScope){
 	//console.log($scope.item);
-	console.log("clicked ItemsCtrl");
+	//console.log("clicked ItemsCtrl");
 	//$scope.item.barcode = 12345;
 	
 	// $scope.login = function(item){
@@ -13,13 +13,13 @@ app.controller("SupplierCtrl", function ($location, $scope, $http, $rootScope){
 	// 	  });
 	// }
 	
-	$scope.createItem = function(){
-		console.log("within createItem");	
-		console.log($scope.item);
-		$http.post('/createItem', $scope.item).success(function(response){
-			console.log(response);
-			$scope.serverResponse = response;
+	// $scope.createItem = function(){
+	// 	console.log("within createItem");	
+	// 	console.log($scope.item);
+	// 	$http.post('/createItem', $scope.item).success(function(response){
+	// 		console.log(response);
+	// 		$scope.serverResponse = response;
 				
-	});
-   };	
+	// });
+ //   };	
 });
