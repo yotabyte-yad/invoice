@@ -6,7 +6,7 @@ app.controller("MfgsListCtrl", function ($location, $scope, $http, $rootScope, M
 	    //$http.get('http://localhost:5000/mfgs')
 	    Manufacturers.getAll()
 	    .success(function (data, status, headers, config) {
-	        $scope.allMfgs = data;	        
+	        $scope.allMfgs = data;
 	    })
 	    .error(function (data, status, header, config) {
 	        $scope.ResponseDetails = "Data: " + data +
