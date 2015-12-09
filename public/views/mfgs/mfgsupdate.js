@@ -20,7 +20,7 @@ app.controller("mfgsUpdateCtrl", function ($location, $scope, Manufacturers, $ti
 				toastr.error('Error while updating Manufacturers');
 				console.log('Error while updating Manufacturers');
 		});
-	  // /toastr.success('Manufacturer updated successfully');
+	  toastr.success('Manufacturer updated successfully');
 	  
 	};
 

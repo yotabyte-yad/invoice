@@ -26,5 +26,7 @@ app.controller("updateSupplierCtrl", function ($timeout, $location, $scope, $htt
 				toastr.error('Error while updating Supplier');
 				console.log('Error while updating Supplier');
 		});
+
+		toastr.success('Supplier <b>' + $scope.supplierModel.name +'</b> updated successfully');
 	};
 });	

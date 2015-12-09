@@ -1,6 +1,6 @@
 app.controller("supplierListCtrl", function ($location, $scope, $http, Suppliers, $timeout){
 	$scope.supplierModel = {};
-	//$scope.allSuppliers = {};
+	$scope.allSuppliers = [];
 	$scope.search = {};
 
 		$scope.GetAllData = function () {
