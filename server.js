@@ -245,9 +245,9 @@ app.get('/suppliers', function(req, res){
 app.post('/suppliers', function(req, res){
 	var body = _.pick(req.body, 'name','tin','address', 'state','pincode', 'active');
 	body.name = body.name.trim();
-	body.address = body.address.trim();
-	body.state = body.state.trim();
-	body.pincode = body.pincode.trim();
+	//body.address = body.address.trim();
+	//body.state = body.state.trim();
+	//body.pincode = body.pincode.trim();
 	console.log(body);
 	
 	db.suppliers.create(body).then(function(supplier){
