@@ -1,4 +1,4 @@
-app.controller("supplierListCtrl", function ($location, $scope, $http, Suppliers){
+app.controller("supplierListCtrl", function ($location, $scope, $http, Suppliers, $timeout){
 	$scope.supplierModel = {};
 	$scope.allSuppliers = {};
 	$scope.search = {};

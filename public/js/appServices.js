@@ -38,13 +38,14 @@ app.factory('Suppliers',['$http', function($http){
 	};
 
 	create = function(supplierModel) {
-		//console.log('appServicesCreate', mfgsModel);
+		console.log('appServicesCreate', supplierModel);
 		return $http.post(urlBase, supplierModel);
 	};	
 
 	return {
 	 	supplier: supplier,
-	 	getAll: getAll
+	 	getAll: getAll,
+	 	create: create
 	};
 
 

@@ -1,10 +1,9 @@
 //Test
 
 //Fields in model - name, tin, address, state, pincode, phone, person, email, active  
-app.controller("createSupplierCtrl", function ($location, $scope, $http, Suppliers){
+app.controller("createSupplierCtrl", function ($timeout, $location, $scope, $http, Suppliers){
 	$scope.supplierModel = {};
-	$scope.supplierModel.active = 1;
-	$scope.allMfgs = {};
+	$scope.supplierModel.active = true;
 	$scope.order = 'name';
 
 	$scope.createSupplier = function(){
