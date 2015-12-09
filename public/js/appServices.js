@@ -40,7 +40,13 @@ app.factory('Suppliers',['$http', function($http){
 	create = function(supplierModel) {
 		console.log('appServicesCreate', supplierModel);
 		return $http.post(urlBase, supplierModel);
-	};	
+	};
+
+	update = function(mfgsModel){
+		//console.log('appServicesUpdate', supplierModel);
+		return $http.put(urlBase + '/' + supplierModel.id, supplierModel);
+	}
+	
 
 	return {
 	 	supplier: supplier,
