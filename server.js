@@ -156,26 +156,26 @@ app.get('/mfgs', function(req, res){
 	});
 });	
 
-//GET a specific Manufacturer
-app.get('/mfgs/:id', function(req, res){
-	var query = req.query;
-	var where = {};
-		where.active = true;
+// //GET a specific Manufacturer
+// app.get('/mfgs/:id', function(req, res){
+// 	var query = req.query;
+// 	var where = {};
+// 		where.active = true;
 
-	if(query.hasOwnProperty('q') && query.q.length > 0){
-		where.name = {
-			$like: '%' + query.q + '%'
-		};
-	}	
+// 	if(query.hasOwnProperty('q') && query.q.length > 0){
+// 		where.name = {
+// 			$like: '%' + query.q + '%'
+// 		};
+// 	}	
 
-	db.mfgs.findAll({where: where})
-		.then(function(mfgs){		
-			//console.log(mfgs);
-			res.json(mfgs);			
-	}, function(e){
-		res.status(500).send('Error in fetch (GET) all suppliers: ' + e);
-	});
-});	
+// 	db.mfgs.findAll({where: where})
+// 		.then(function(mfgs){		
+// 			//console.log(mfgs);
+// 			res.json(mfgs);			
+// 	}, function(e){
+// 		res.status(500).send('Error in fetch (GET) all suppliers: ' + e);
+// 	});
+// });	
 
 //POST - Add a new manufacturer to database
 app.post('/mfgs', function(req, res){
@@ -264,7 +264,8 @@ app.post('/suppliers', function(req, res){
 // PUT /suppliers/:id
 app.put ('/suppliers/:id', function(req, res){
 	//var supplierId = parseInt(req.params.id);
-	var body = _.pick(req.body, 'name', 'address', 'state','pincode', 'active');
+	var body = _.pick(req.body, 'name','tin','address', 'state',
+															'pincode', 'phone','person','email', 'active');
 	var validAttributes = {};
 
 	if(body.hasOwnProperty('completed') && _.isBoolean(body.completed)){

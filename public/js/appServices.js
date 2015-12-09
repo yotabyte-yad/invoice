@@ -42,8 +42,8 @@ app.factory('Suppliers',['$http', function($http){
 		return $http.post(urlBase, supplierModel);
 	};
 
-	update = function(mfgsModel){
-		//console.log('appServicesUpdate', supplierModel);
+	update = function(supplierModel){
+		console.log('appServicesUpdate', supplierModel);
 		return $http.put(urlBase + '/' + supplierModel.id, supplierModel);
 	}
 	
