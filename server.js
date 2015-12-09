@@ -241,8 +241,9 @@ app.get('/suppliers', function(req, res){
 
 	
 //POST /suppliers
+//Fields in model - name, tin, address, state, pincode, phone, person, email, active 
 app.post('/suppliers', function(req, res){
-	var body = _.pick(req.body, 'name', 'address', 'state','pincode', 'active');
+	var body = _.pick(req.body, 'name','tin','address', 'state','pincode', 'active');
 	body.name = body.name.trim();
 	body.address = body.address.trim();
 	body.state = body.state.trim();

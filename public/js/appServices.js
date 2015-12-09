@@ -37,9 +37,9 @@ app.factory('Suppliers',['$http', function($http){
 		return $http.get(urlBase);
 	};
 
-	create = function(mfgsModel) {
+	create = function(supplierModel) {
 		//console.log('appServicesCreate', mfgsModel);
-		return $http.post(urlBase, mfgsModel);
+		return $http.post(urlBase, supplierModel);
 	};	
 
 	return {

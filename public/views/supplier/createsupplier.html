@@ -41,13 +41,16 @@
               <input class="form-control" id="email" ng-model="supplierModel.email" type="text">
             </div>              
           </div>
-          <div class="row">
-						<div class="col-sm-8 col-sm-offset-5">
-							<button class="btn btn-success" ng-click="createSupplier(supplier)">Add Supplier</button>
-  					</div>	
-					</div>
+          <div class="checkbox col-lg-offset-5">
+              <label><input type="checkbox" ng-model="supplierModel.active"> Active </label>
+          </div> 
       </div>
      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-5">
+        <button class="btn btn-success" ng-click="createSupplier(supplier)">Add Supplier</button>
+      </div>  
     </div>
   </div>
 </div> 
