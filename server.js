@@ -266,28 +266,19 @@ app.put ('/suppliers/:id', function(req, res){
 	//var supplierId = parseInt(req.params.id);
 	var body = _.pick(req.body, 'name','tin','address', 'state',
 															'pincode', 'phone','person','email', 'active');
-	var validAttributes = {};
 
-	if(body.hasOwnProperty('completed') && _.isBoolean(body.completed)){
-		validAttributes.completed = body.completed;
-	} else if(body.hasOwnProperty('completed')) {
-		// Bad
-		return res.status(400).send('Error is delete.... property --> completed');
-	} else {
-		// Never provided Attribute, no problem here
-	}
+	//console.log('updating', body);
+	db.suppliers.findById(req.body.id).then( function (supplier){
+			if(supplier){
+				return supplier.update(body);
 
-	if(body.hasOwnProperty('description') && _.isString(body.description) && body.description.trim().length > 0){
-		validAttributes.description = body.description;
-	} else if(body.hasOwnProperty('description')) {
-		// Bad
-		return res.status(400).send('Error is delete.... property --> description');
-	}
+			}else
 
-	///Doing actual update of the values as Objects are passed by Reference
-	/// No need to explicitly update the TODO object array
-	_.extend(matchedTodo, validAttributes);
-	res.json(matchedTodo);
+			{
+				res.status(404).send("ID not found to update");
+			}
+	res.json(supplier);
+	});
 
 
 });
