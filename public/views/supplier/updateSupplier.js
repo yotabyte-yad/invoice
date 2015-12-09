@@ -9,4 +9,16 @@ app.controller("updateSupplierCtrl", function ($timeout, $location, $scope, $htt
 		}
 	}());
 
+
+	$scope.updateSupplier = function(){
+		Manufacturers.update($scope.mfgsModel)
+		.success(function(){				
+		})
+		.error(function(){
+				console.log('Error while updating Manufacturers');
+		});
+	  // /toastr.success('Manufacturer updated successfully');
+	  toastr.success('Changes saved successfully');	
+	};
+
 });	

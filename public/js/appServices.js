@@ -51,7 +51,8 @@ app.factory('Suppliers',['$http', function($http){
 	return {
 	 	supplier: supplier,
 	 	getAll: getAll,
-	 	create: create
+	 	create: create,
+	 	update: update
 	};
 
 
