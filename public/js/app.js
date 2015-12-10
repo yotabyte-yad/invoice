@@ -45,7 +45,10 @@ app.config(function($routeProvider) {
 		templateUrl: 'views/supplier/supplierslist.html',
 		controller: 'supplierListCtrl'
   })
-
+  	.when('/updateSupplier/:id', {
+		templateUrl: 'views/supplier/updateSupplier.html',
+		controller: 'updateSupplierCtrl'
+  })
 
 // BEGIN SECTION --> End point for Manufacturers screens  	
   	.when('/mfgs', {
