@@ -37,14 +37,22 @@ app.factory('Suppliers',['$http', function($http){
 		return $http.get(urlBase);
 	};
 
-	create = function(mfgsModel) {
-		//console.log('appServicesCreate', mfgsModel);
-		return $http.post(urlBase, mfgsModel);
-	};	
+	create = function(supplierModel) {
+		console.log('appServicesCreate', supplierModel);
+		return $http.post(urlBase, supplierModel);
+	};
+
+	update = function(supplierModel){
+		//console.log('appServicesUpdate', supplierModel);
+		return $http.put(urlBase + '/' + supplierModel.id, supplierModel);
+	}
+	
 
 	return {
 	 	supplier: supplier,
-	 	getAll: getAll
+	 	getAll: getAll,
+	 	create: create,
+	 	update: update
 	};
 
 

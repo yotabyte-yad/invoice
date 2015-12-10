@@ -17,42 +17,42 @@ module.exports = function(sequelize, DataTypes) {
 		}, 
 		address: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: true,
 			validate: {
 				len: [1, 250]
 			}
 		},
 		state: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: true,
 			validate: {
 				len: [1, 250]
 			}
 		},
 		pincode: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: true,
 			validate: {
 				len: [1, 250]
 			}
 		},
 		phone: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: true,
 			validate: {
 				len: [1, 250]
 			}
 		},
 		person: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: true,
 			validate: {
 				len: [1, 250]
 			}
 		},
 		email: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: true,
 			validate: {
 				len: [1, 250]
 			}
