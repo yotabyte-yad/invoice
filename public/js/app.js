@@ -49,6 +49,7 @@ app.config(function($routeProvider) {
 		templateUrl: 'views/supplier/updateSupplier.html',
 		controller: 'updateSupplierCtrl'
   })
+ // END SECTION --> End point for Suppliers screens 
 
 // BEGIN SECTION --> End point for Manufacturers screens  	
   	.when('/mfgs', {
@@ -81,7 +82,7 @@ app.config(function($routeProvider) {
 // END SECTION --> End point for prescribing Doctor info screens 
 
 // BEGIN SECTION --> End point for buyer info screens  	
-  	.when('/buyer', {
+  	.when('/createbuyer', {
 		templateUrl: 'views/buyer/buyercreate.html',
 		controller: 'buyerCreateCtrl'
   })
@@ -89,17 +90,28 @@ app.config(function($routeProvider) {
 		templateUrl: 'views/buyer/buyerlist.html',
 		controller: 'buyerListCtrl'
   })
-    .when('/editbuyer/:id', {
+    .when('/updatebuyer/:id', {
 		templateUrl: 'views/buyer/buyerupdate.html',
 		controller: 'buyerUpdateCtrl'
   })	
 // END SECTION --> End point for buyer info screens     
 
 // BEGIN SECTION --> End point for Sales screens     	
-    .when('/sales', {
+    .when('/createsales', {
 		templateUrl: 'views/sales/sales.html',
 		controller: 'SalesCtrl'
-  })  
+  }) 
+
+   	.when('/listsales', {
+		templateUrl: 'views/buyer/saleslist.html',
+		controller: 'salesListCtrl'
+  })
+    .when('/updatesales/:id', {
+		templateUrl: 'views/buyer/salesupdate.html',
+		controller: 'salesUpdateCtrl'
+  })
+// END SECTION --> End point for Sales screens  
+
      .when('/search', {
 		templateUrl: 'views/search/search.html',
 		controller: 'searchCtrl'
