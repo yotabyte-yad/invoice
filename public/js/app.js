@@ -50,7 +50,6 @@ app.config(function($routeProvider) {
 		controller: 'updateSupplierCtrl'
   })
 
-
 // BEGIN SECTION --> End point for Manufacturers screens  	
   	.when('/mfgs', {
 		templateUrl: 'views/mfgs/mfgscreate.html',
