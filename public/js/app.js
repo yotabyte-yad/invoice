@@ -67,32 +67,32 @@ app.config(function($routeProvider) {
 // END SECTION --> End point for Manufacturers screens 
 
 // BEGIN SECTION --> End point for prescribing Doctor info screens  	
-  	.when('/doc', {
+  	.when('/createdoc', {
 		templateUrl: 'views/doc/createdoc.html',
-		controller: 'MfgsCtrl'
+		controller: 'docCreateCtrl'
   })
-  	.when('/mfgslist', {
+  	.when('/doclist', {
 		templateUrl: 'views/doc/listdocs.html',
-		controller: 'MfgsListCtrl'
+		controller: 'docListCtrl'
   })
-    .when('/editmfgs/:id', {
+    .when('/updatedoc/:id', {
 		templateUrl: 'views/doc/updatedoc.html',
-		controller: 'mfgsUpdateCtrl'
+		controller: 'docUpdateCtrl'
   })	
 // END SECTION --> End point for prescribing Doctor info screens 
 
 // BEGIN SECTION --> End point for buyer info screens  	
-  	.when('/mfgs', {
-		templateUrl: 'views/mfgs/mfgscreate.html',
-		controller: 'MfgsCtrl'
+  	.when('/buyer', {
+		templateUrl: 'views/buyer/buyercreate.html',
+		controller: 'buyerCreateCtrl'
   })
-  	.when('/mfgslist', {
-		templateUrl: 'views/mfgs/mfgslist.html',
-		controller: 'MfgsListCtrl'
+  	.when('/buyerlist', {
+		templateUrl: 'views/buyer/buyerlist.html',
+		controller: 'buyerListCtrl'
   })
-    .when('/editmfgs/:id', {
-		templateUrl: 'views/mfgs/mfgsupdate.html',
-		controller: 'mfgsUpdateCtrl'
+    .when('/editbuyer/:id', {
+		templateUrl: 'views/buyer/buyerupdate.html',
+		controller: 'buyerUpdateCtrl'
   })	
 // END SECTION --> End point for buyer info screens     
 
