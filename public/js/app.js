@@ -49,10 +49,6 @@ app.config(function($routeProvider) {
 		templateUrl: 'views/supplier/updateSupplier.html',
 		controller: 'updateSupplierCtrl'
   })
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 
 // BEGIN SECTION --> End point for Manufacturers screens  	
   	.when('/mfgs', {
