@@ -66,6 +66,36 @@ app.config(function($routeProvider) {
   })	
 // END SECTION --> End point for Manufacturers screens 
 
+// BEGIN SECTION --> End point for prescribing Doctor info screens  	
+  	.when('/doc', {
+		templateUrl: 'views/doc/createdoc.html',
+		controller: 'MfgsCtrl'
+  })
+  	.when('/mfgslist', {
+		templateUrl: 'views/doc/listdocs.html',
+		controller: 'MfgsListCtrl'
+  })
+    .when('/editmfgs/:id', {
+		templateUrl: 'views/doc/updatedoc.html',
+		controller: 'mfgsUpdateCtrl'
+  })	
+// END SECTION --> End point for prescribing Doctor info screens 
+
+// BEGIN SECTION --> End point for buyer info screens  	
+  	.when('/mfgs', {
+		templateUrl: 'views/mfgs/mfgscreate.html',
+		controller: 'MfgsCtrl'
+  })
+  	.when('/mfgslist', {
+		templateUrl: 'views/mfgs/mfgslist.html',
+		controller: 'MfgsListCtrl'
+  })
+    .when('/editmfgs/:id', {
+		templateUrl: 'views/mfgs/mfgsupdate.html',
+		controller: 'mfgsUpdateCtrl'
+  })	
+// END SECTION --> End point for buyer info screens     
+
 // BEGIN SECTION --> End point for Sales screens     	
     .when('/sales', {
 		templateUrl: 'views/sales/sales.html',
