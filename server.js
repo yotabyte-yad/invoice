@@ -156,26 +156,26 @@ app.get('/mfgs', function(req, res){
 	});
 });	
 
-//GET a specific Manufacturer
-app.get('/mfgs/:id', function(req, res){
-	var query = req.query;
-	var where = {};
-		where.active = true;
+// //GET a specific Manufacturer
+// app.get('/mfgs/:id', function(req, res){
+// 	var query = req.query;
+// 	var where = {};
+// 		where.active = true;
 
-	if(query.hasOwnProperty('q') && query.q.length > 0){
-		where.name = {
-			$like: '%' + query.q + '%'
-		};
-	}	
+// 	if(query.hasOwnProperty('q') && query.q.length > 0){
+// 		where.name = {
+// 			$like: '%' + query.q + '%'
+// 		};
+// 	}	
 
-	db.mfgs.findAll({where: where})
-		.then(function(mfgs){		
-			//console.log(mfgs);
-			res.json(mfgs);			
-	}, function(e){
-		res.status(500).send('Error in fetch (GET) all suppliers: ' + e);
-	});
-});	
+// 	db.mfgs.findAll({where: where})
+// 		.then(function(mfgs){		
+// 			//console.log(mfgs);
+// 			res.json(mfgs);			
+// 	}, function(e){
+// 		res.status(500).send('Error in fetch (GET) all suppliers: ' + e);
+// 	});
+// });	
 
 //POST - Add a new manufacturer to database
 app.post('/mfgs', function(req, res){
@@ -241,12 +241,14 @@ app.get('/suppliers', function(req, res){
 
 	
 //POST /suppliers
+//Fields in model - name, tin, address, state, pincode, phone, person, email, active 
 app.post('/suppliers', function(req, res){
-	var body = _.pick(req.body, 'name', 'address', 'state','pincode', 'active');
+	var body = _.pick(req.body, 'name','tin','address', 'state',
+															'pincode', 'phone','person','email', 'active');
 	body.name = body.name.trim();
-	body.address = body.address.trim();
-	body.state = body.state.trim();
-	body.pincode = body.pincode.trim();
+	//body.address = body.address.trim();
+	//body.state = body.state.trim();
+	//body.pincode = body.pincode.trim();
 	console.log(body);
 	
 	db.suppliers.create(body).then(function(supplier){
@@ -262,29 +264,21 @@ app.post('/suppliers', function(req, res){
 // PUT /suppliers/:id
 app.put ('/suppliers/:id', function(req, res){
 	//var supplierId = parseInt(req.params.id);
-	var body = _.pick(req.body, 'name', 'address', 'state','pincode', 'active');
-	var validAttributes = {};
+	var body = _.pick(req.body, 'name','tin','address', 'state',
+															'pincode', 'phone','person','email', 'active');
 
-	if(body.hasOwnProperty('completed') && _.isBoolean(body.completed)){
-		validAttributes.completed = body.completed;
-	} else if(body.hasOwnProperty('completed')) {
-		// Bad
-		return res.status(400).send('Error is delete.... property --> completed');
-	} else {
-		// Never provided Attribute, no problem here
-	}
+	//console.log('updating', body);
+	db.suppliers.findById(req.body.id).then( function (supplier){
+			if(supplier){
+				return supplier.update(body);
 
-	if(body.hasOwnProperty('description') && _.isString(body.description) && body.description.trim().length > 0){
-		validAttributes.description = body.description;
-	} else if(body.hasOwnProperty('description')) {
-		// Bad
-		return res.status(400).send('Error is delete.... property --> description');
-	}
+			}else
 
-	///Doing actual update of the values as Objects are passed by Reference
-	/// No need to explicitly update the TODO object array
-	_.extend(matchedTodo, validAttributes);
-	res.json(matchedTodo);
+			{
+				res.status(404).send("ID not found to update");
+			}
+	res.json(supplier);
+	});
 
 
 });
