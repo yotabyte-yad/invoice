@@ -1,5 +1,7 @@
+var server = 'http://localhost:5000';
+
 app.factory('Manufacturers', ['$http', function($http){
-	var urlBase = 'http://localhost:5000/mfgs';
+	var urlBase = server + '/mfgs';
 	//var Manufacturers = {};
 
 	var manufacturer = {};
@@ -60,10 +62,10 @@ app.factory('Suppliers',['$http', function($http){
 }]);
 
 //Factory for Suppliers
-app.factory('Suppliers',['$http', function($http){
+app.factory('Sales',['$http', function($http){
 	// variable stores one supplier record, useful during editing
-	var supplier = {};
-  var urlBase = 'http://localhost:5000/suppliers';
+	var sales = {};
+  var urlBase = 'http://localhost:5000/sales';
 
   getAll = function(){
 		return $http.get(urlBase);
