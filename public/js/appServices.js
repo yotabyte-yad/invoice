@@ -34,7 +34,7 @@ app.factory('Manufacturers', ['$http', function($http){
 app.factory('Suppliers',['$http', function($http){
 	// variable stores one supplier record, useful during editing
 	var supplier = {};
-  var urlBase = 'http://localhost:5000/suppliers';
+  var urlBase = server + '/suppliers';
 
   getAll = function(){
 		return $http.get(urlBase);
@@ -62,28 +62,28 @@ app.factory('Suppliers',['$http', function($http){
 }]);
 
 //Factory for Suppliers
-app.factory('Sales',['$http', function($http){
+app.factory('SalesFactory',['$http', function($http){
 	// variable stores one supplier record, useful during editing
 	var sales = {};
-  var urlBase = 'http://localhost:5000/sales';
+  var urlBase = server + '/sales';
 
   getAll = function(){
 		return $http.get(urlBase);
 	};
 
-	create = function(supplierModel) {
-		console.log('appServicesCreate', supplierModel);
-		return $http.post(urlBase, supplierModel);
+	create = function(salesModel) {
+		console.log('appServicesCreate', salesModel);
+		return $http.post(urlBase, salesModel);
 	};
 
-	update = function(supplierModel){
+	update = function(salesModel){
 		//console.log('appServicesUpdate', supplierModel);
-		return $http.put(urlBase + '/' + supplierModel.id, supplierModel);
+		return $http.put(urlBase + '/' + salesModel.id, salesModel);
 	}
 	
 
 	return {
-	 	supplier: supplier,
+	 	sales: sales,
 	 	getAll: getAll,
 	 	create: create,
 	 	update: update

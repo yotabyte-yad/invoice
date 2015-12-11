@@ -1,5 +1,5 @@
 
-app.controller("createSalesCtrl", function ($scope, $templateCache, $http){
+app.controller("createSalesCtrl", function ($scope, $templateCache, $http, SalesFactory){
 	//console.log('In sales controller');
 	
 	$scope.billModel = {};
