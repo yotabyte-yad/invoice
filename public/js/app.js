@@ -1,3 +1,20 @@
+//Paths and controllers
+
+//Suppliers
+// 1) createSupplier.html
+//	createSupplierCtrl
+
+//Purchase
+	// 1)	createpurchaseinvoice.html
+	//    createPurchaseInvoiceCtrl
+	// 2) listpurchaseinvoices.html
+	//   	listPurchaseInvoicesCtrl
+	// 3) udpatepurchaseinvoice.html
+	//		updatePurchaseInvoiceCtrl	
+
+
+
+
 var app = angular.module("ybinvoice",[
 					'ngRoute', 
 					'ngSanitize', 
@@ -112,7 +129,22 @@ app.config(function($routeProvider) {
   })
 // END SECTION --> End point for Sales screens  
 
-     .when('/search', {
+// BEGIN SECTION --> End point for purchase info screens  	
+  	.when('/createpurchaseinvoice', {
+		templateUrl: 'views/purchase/createpurchaseinvoice.html',
+		controller: 'createPurchaseInvoiceCtrl'
+  })
+  	.when('/buyerlist', {
+		templateUrl: 'views/purchase/listpurchaseinvoices.html',
+		controller: 'listPurchaseInvoicesCtrl'
+  })
+    .when('/updatebuyer/:id', {
+		templateUrl: 'views/purchase/udpatepurchaseinvoice.html',
+		controller: 'updatePurchaseInvoiceCtrl'
+  })	
+// END SECTION --> End point for purchase info screens   
+
+    .when('/search', {
 		templateUrl: 'views/search/search.html',
 		controller: 'searchCtrl'
   })
