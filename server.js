@@ -280,7 +280,7 @@ app.put ('/suppliers/:id', function(req, res){
 /// BEGIN: Code related to Purchase Invoices
 
 //GET all the purchaseInvoices
-app.get('/listPurchaseInvoices', function(req, res){
+app.get('/listpurchaseinvoices', function(req, res){
 	//var query = req.query;
 	var where = {};
 		where.active = true;
@@ -292,7 +292,6 @@ app.get('/listPurchaseInvoices', function(req, res){
 		.then(function(suppliers){
 		
 		res.json(suppliers);		
-		//console.log(suppliers.description);
 	}, function(e){
 		res.status(500).send('Error in Find all   :' + e);
 	});
@@ -301,7 +300,7 @@ app.get('/listPurchaseInvoices', function(req, res){
 	
 //POST /suppliers
 //Fields in model - name, tin, address, state, pincode, phone, person, email, active 
-app.post('/suppliers', function(req, res){
+app.post('/createpurchaseinvoices', function(req, res){
 	var body = _.pick(req.body, 'name','tin','address', 'state',
 															'pincode', 'phone','person','email', 'active');
 	body.name = body.name.trim();
@@ -321,7 +320,7 @@ app.post('/suppliers', function(req, res){
 
 
 // PUT /suppliers/:id
-app.put ('/suppliers/:id', function(req, res){
+app.put ('/purchaseinvoices/:id', function(req, res){
 	//var supplierId = parseInt(req.params.id);
 	var body = _.pick(req.body, 'name','tin','address', 'state',
 															'pincode', 'phone','person','email', 'active');
@@ -339,15 +338,6 @@ app.put ('/suppliers/:id', function(req, res){
 	res.json(supplier);
 	});
 });
-
-
-
-
-
-
-
-
-
 //// END: Code related to Purchase Invoices
 
 
