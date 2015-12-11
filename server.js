@@ -235,10 +235,6 @@ app.get('/suppliers', function(req, res){
 	});
 
 });				
-
-
-
-
 	
 //POST /suppliers
 //Fields in model - name, tin, address, state, pincode, phone, person, email, active 
@@ -279,9 +275,83 @@ app.put ('/suppliers/:id', function(req, res){
 			}
 	res.json(supplier);
 	});
+});
 
+/// BEGIN: Code related to Purchase Invoices
+
+//GET all the purchaseInvoices
+app.get('/listPurchaseInvoices', function(req, res){
+	//var query = req.query;
+	var where = {};
+		where.active = true;
+
+
+	db.suppliers.findAll({
+		 where: where
+	})
+		.then(function(suppliers){
+		
+		res.json(suppliers);		
+		//console.log(suppliers.description);
+	}, function(e){
+		res.status(500).send('Error in Find all   :' + e);
+	});
+
+});				
+	
+//POST /suppliers
+//Fields in model - name, tin, address, state, pincode, phone, person, email, active 
+app.post('/suppliers', function(req, res){
+	var body = _.pick(req.body, 'name','tin','address', 'state',
+															'pincode', 'phone','person','email', 'active');
+	body.name = body.name.trim();
+	//body.address = body.address.trim();
+	//body.state = body.state.trim();
+	//body.pincode = body.pincode.trim();
+	console.log(body);
+	
+	db.suppliers.create(body).then(function(supplier){
+		res.json(supplier.toJSON());
+	}, function(e){
+		res.status(400).json(e);
+		console.log(e);
+	});
 
 });
+
+
+// PUT /suppliers/:id
+app.put ('/suppliers/:id', function(req, res){
+	//var supplierId = parseInt(req.params.id);
+	var body = _.pick(req.body, 'name','tin','address', 'state',
+															'pincode', 'phone','person','email', 'active');
+
+	//console.log('updating', body);
+	db.suppliers.findById(req.body.id).then( function (supplier){
+			if(supplier){
+				return supplier.update(body);
+
+			}else
+
+			{
+				res.status(404).send("ID not found to update");
+			}
+	res.json(supplier);
+	});
+});
+
+
+
+
+
+
+
+
+
+//// END: Code related to Purchase Invoices
+
+
+
 
 
 db.sequelize.sync({force: false}).then(function(){	
