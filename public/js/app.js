@@ -116,7 +116,7 @@ app.config(function($routeProvider) {
 // BEGIN SECTION --> End point for Sales screens     	
     .when('/createsales', {
 		templateUrl: 'views/sales/sales.html',
-		controller: 'SalesCtrl'
+		controller: 'createSalesCtrl'
   }) 
 
    	.when('/listsales', {
