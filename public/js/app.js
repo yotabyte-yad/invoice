@@ -124,7 +124,7 @@ app.config(function($routeProvider) {
 		controller: 'listSalesInvoicesCtrl'
   })
     .when('/updatesales/:id', {
-		templateUrl: 'views/buyer/salesupdate.html',
+		templateUrl: 'views/buyer/updatesalesinvoice.html',
 		controller: 'salesUpdateCtrl'
   })
 // END SECTION --> End point for Sales screens  
