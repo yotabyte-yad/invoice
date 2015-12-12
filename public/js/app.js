@@ -114,14 +114,14 @@ app.config(function($routeProvider) {
 // END SECTION --> End point for buyer info screens     
 
 // BEGIN SECTION --> End point for Sales screens     	
-    .when('/createsales', {
-		templateUrl: 'views/sales/sales.html',
-		controller: 'createSalesCtrl'
+    .when('/createsalesinvoice', {
+		templateUrl: 'views/sales/createsalesinvoice.html',
+		controller: 'createSalesInvoiceCtrl'
   }) 
 
    	.when('/listsales', {
-		templateUrl: 'views/buyer/saleslist.html',
-		controller: 'salesListCtrl'
+		templateUrl: 'views/buyer/listsalesinvoices.html',
+		controller: 'listSalesInvoicesCtrl'
   })
     .when('/updatesales/:id', {
 		templateUrl: 'views/buyer/salesupdate.html',

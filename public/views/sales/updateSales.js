@@ -1,3 +1,3 @@
-app.controller("salesUpdateCtrl", function ($scope, $templateCache, $http){
+app.controller("salesInvoiceUpdateCtrl", function ($scope, $templateCache, $http){
 	
 });
