@@ -298,7 +298,7 @@ app.get('/listpurchaseinvoices', function(req, res){
 
 });				
 	
-//POST /suppliers
+//POST /createpurchaseinvoices
 //Fields in model - name, tin, address, state, pincode, phone, person, email, active 
 app.post('/createpurchaseinvoices', function(req, res){
 	var body = _.pick(req.body, 'name','tin','address', 'state',
