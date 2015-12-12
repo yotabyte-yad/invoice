@@ -12,6 +12,13 @@
 	// 3) udpatepurchaseinvoice.html
 	//		updatePurchaseInvoiceCtrl	
 
+//Sales
+	// 1)	createsalesinvoice.html
+	//    createSalesInvoiceCtrl
+	// 2) listsalesinvoices.html
+	//   	listSalesInvoicesCtrl
+	// 3) udpatesalesinvoice.html
+	//		updateSalesInvoiceCtrl	
 
 
 
@@ -152,6 +159,10 @@ app.config(function($routeProvider) {
 		templateUrl: 'views/items/items.html',
 		controller: 'ItemsCtrl'
   })
+    .otherwise({
+		templateUrl: 'views/sales/createsalesinvoice.html',
+		controller: 'createSalesInvoiceCtrl'
+  }) 
   // 	.otherwise({
 		// redirectTo: '/home'
   // })
