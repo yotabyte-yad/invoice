@@ -72,8 +72,19 @@ $scope.salesInvoiceModel = {};
 	$scope.salesinvoiceModel.netAmount = $scope.grandTotal() || 0;
 
 	$scope.saveSalesInvoice = function(){
+		SalesInvoiceFactory.create($scope.dummySalesInvoiceModel)
+				.success(function(response){
+					toastr.success('Sales Invoice created successfully');	
+					$timeout(function(){														
+					$location.url("/mfgslist");
+				}, 3000);						
+		})
+		.error(function(){
+			console.log('Error while adding this Bill');
+			toastr.error('<b>Seems there is an issue </b>');
+		});		
 
-	}
+	} //end of function - saveSalesInvoice
 
 
 
