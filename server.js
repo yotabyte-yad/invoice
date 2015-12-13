@@ -363,16 +363,17 @@ app.get('/salesinvoice', function(req, res){
 });				
 	
 //POST /salesinvoice
-//Fields in model - name, tin, address, state, pincode, phone, person, email, active 
+//Fields in model - date, Buyer Name, Prescribing Doctor Name, Discount, Net Amount, Gross Amount
 app.post('/salesinvoice', function(req, res){
-	//var body = _.pick(req.body, 'name','tin','address', 'state',
-	//														'pincode', 'phone','person','email', 'active');
-	//body.name = body.name.trim();
-	//body.address = body.address.trim();
-	//body.state = body.state.trim();
-	//body.pincode = body.pincode.trim();
-	console.log('SalesInvoice');
-	console.log(body);
+	var salesInvoiceHeader = _.pick(req.body, 'date', 'patient', 'doctor', 'discount', 'netAmount');
+	var salesInvoiceItemDetails = _.pick(req.body, 'items');
+	console.log('salesInvoiceHeader');
+	console.log(salesInvoiceHeader);
+
+	
+	
+	console.log('salesInvoiceItemDetails');
+	console.log(salesInvoiceItemDetails);
 	
 	// db.suppliers.create(body).then(function(supplier){
 	// 	res.json(supplier.toJSON());

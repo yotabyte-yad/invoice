@@ -88,6 +88,8 @@ app.factory('SalesInvoiceFactory',['$http', function($http){
 	 	create: create,
 	 	update: update
 	};
+}]);
+
 
 //Factory for Suppliers
 app.factory('PurchaseInvoiceFactory',['$http', function($http){
