@@ -1,7 +1,7 @@
 var server = 'http://localhost:5000';
 
 app.factory('Manufacturers', ['$http', function($http){
-	var urlBase = server + '/mfgs';
+	var urlBase = server + '/purchaseinvoice';
 	//var Manufacturers = {};
 
 	var manufacturer = {};
@@ -62,32 +62,59 @@ app.factory('Suppliers',['$http', function($http){
 }]);
 
 //Factory for Suppliers
-app.factory('SalesFactory',['$http', function($http){
+app.factory('SalesInvoiceFactory',['$http', function($http){
 	// variable stores one supplier record, useful during editing
-	var sales = {};
-  var urlBase = server + '/sales';
+	var salesInvoice = {};
+  var urlBase = server + '/salesinvoice';
 
   getAll = function(){
 		return $http.get(urlBase);
 	};
 
-	create = function(salesModel) {
-		console.log('appServicesCreate', salesModel);
-		return $http.post(urlBase, salesModel);
+	create = function(salesInvoiceModel) {
+		console.log('appServicesCreate', salesInvoiceModel);
+		return $http.post(urlBase, salesInvoiceModel);
 	};
 
-	update = function(salesModel){
+	update = function(salesInvoiceModel){
 		//console.log('appServicesUpdate', supplierModel);
-		return $http.put(urlBase + '/' + salesModel.id, salesModel);
+		return $http.put(urlBase + '/' + salesInvoiceModel.id, salesInvoiceModel);
 	}
 	
 
 	return {
-	 	sales: sales,
+	 	salesInvoice: salesInvoice,
 	 	getAll: getAll,
 	 	create: create,
 	 	update: update
 	};
 
+//Factory for Suppliers
+app.factory('PurchaseInvoiceFactory',['$http', function($http){
+	// variable stores one supplier record, useful during editing
+	var purchaseInvoice = {};
+  var urlBase = server + '/purchaseinvoice';
+
+  getAll = function(){
+		return $http.get(urlBase);
+	};
+
+	create = function(purchaseModel) {
+		console.log('appServicesCreate', purchaseModel);
+		return $http.post(urlBase, purchaseModel);
+	};
+
+	update = function(purchaseModel){
+		//console.log('appServicesUpdate', supplierModel);
+		return $http.put(urlBase + '/' + purchaseModel.id, purchaseModel);
+	}
+	
+
+	return {
+	 	purchaseInvoice: purchaseInvoice,
+	 	getAll: getAll,
+	 	create: create,
+	 	update: update
+	};
 
 }]);

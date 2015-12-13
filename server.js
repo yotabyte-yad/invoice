@@ -279,8 +279,8 @@ app.put ('/suppliers/:id', function(req, res){
 
 /// BEGIN: Code related to Purchase Invoices
 
-//GET all the purchaseInvoices
-app.get('/listpurchaseinvoices', function(req, res){
+//GET all the purchaseinvoice
+app.get('/purchaseinvoice', function(req, res){
 	//var query = req.query;
 	var where = {};
 		where.active = true;
@@ -298,9 +298,9 @@ app.get('/listpurchaseinvoices', function(req, res){
 
 });				
 	
-//POST /createpurchaseinvoices
+//POST /purchaseinvoice
 //Fields in model - name, tin, address, state, pincode, phone, person, email, active 
-app.post('/createpurchaseinvoices', function(req, res){
+app.post('/purchaseinvoice', function(req, res){
 	var body = _.pick(req.body, 'name','tin','address', 'state',
 															'pincode', 'phone','person','email', 'active');
 	body.name = body.name.trim();
@@ -319,8 +319,9 @@ app.post('/createpurchaseinvoices', function(req, res){
 });
 
 
-// PUT /suppliers/:id
-app.put ('/purchaseinvoices/:id', function(req, res){
+// PUT /purchaseinvoice/:id
+
+app.put ('/purchaseinvoice/:id', function(req, res){
 	//var supplierId = parseInt(req.params.id);
 	var body = _.pick(req.body, 'name','tin','address', 'state',
 															'pincode', 'phone','person','email', 'active');
@@ -340,7 +341,71 @@ app.put ('/purchaseinvoices/:id', function(req, res){
 });
 //// END: Code related to Purchase Invoices
 
+//// BEGIN: Code related to Sales Invoices
 
+//GET all the salesinvoice
+app.get('/salesinvoice', function(req, res){
+	//var query = req.query;
+	var where = {};
+		where.active = true;
+
+
+	db.suppliers.findAll({
+		 where: where
+	})
+		.then(function(suppliers){
+		
+		res.json(suppliers);		
+	}, function(e){
+		res.status(500).send('Error in Find all   :' + e);
+	});
+
+});				
+	
+//POST /salesinvoice
+//Fields in model - name, tin, address, state, pincode, phone, person, email, active 
+app.post('/salesinvoice', function(req, res){
+	//var body = _.pick(req.body, 'name','tin','address', 'state',
+	//														'pincode', 'phone','person','email', 'active');
+	//body.name = body.name.trim();
+	//body.address = body.address.trim();
+	//body.state = body.state.trim();
+	//body.pincode = body.pincode.trim();
+	console.log('SalesInvoice');
+	console.log(body);
+	
+	// db.suppliers.create(body).then(function(supplier){
+	// 	res.json(supplier.toJSON());
+	// }, function(e){
+	// 	res.status(400).json(e);
+	// 	console.log(e);
+	// });
+
+});
+
+
+// PUT /salesinvoice/:id
+
+app.put ('/salesinvoice/:id', function(req, res){
+	//var supplierId = parseInt(req.params.id);
+	var body = _.pick(req.body, 'name','tin','address', 'state',
+															'pincode', 'phone','person','email', 'active');
+
+	//console.log('updating', body);
+	db.suppliers.findById(req.body.id).then( function (supplier){
+			if(supplier){
+				return supplier.update(body);
+
+			}else
+
+			{
+				res.status(404).send("ID not found to update");
+			}
+	res.json(supplier);
+	});
+});
+
+////END: Code related to Sales Invoices
 
 
 

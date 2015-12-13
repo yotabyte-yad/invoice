@@ -5,9 +5,13 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.DATE,
 			allowNull: false
 		},
-		supplier_id: {
-			type: DataTypes.INTEGER,
-			allowNull: false
+		buyer: {
+			type: DataTypes.STRING,
+			allowNull: true
+		},
+		doctor: {
+			type: DataTypes.STRING,
+			allowNull: true
 		},
 		discount_per: {
 			type: DataTypes.DECIMAL(6, 2),
