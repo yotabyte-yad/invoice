@@ -13,18 +13,6 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.STRING,
 			allowNull: true
 		},
-		sales_item_location: {
-			type: DataTypes.STRING,
-			allowNull: true
-		},
-		sales_item_package_unit: {
-			type: DataTypes.STRING,
-			allowNull: true
-		},
-		sales_item_costprice: {
-			type: DataTypes.DECIMAL(15, 2),
-			allowNull: true
-		},
 		sales_item_batch: {
 			type: DataTypes.STRING,
 			allowNull: true
@@ -48,12 +36,27 @@ module.exports = function(sequelize, DataTypes) {
 		sales_item_current_stock: {
 			type: DataTypes.INTEGER,
 			allowNull: true
-		},
-		sales_item_comments: {
-			type: DataTypes.STRING,
-			allowNull: true
 		}
-
 	});
 
 };
+
+
+// ,
+// 		sales_item_comments: {
+// 			type: DataTypes.STRING,
+// 			allowNull: true
+// 		}
+
+		// sales_item_location: {
+		// 	type: DataTypes.STRING,
+		// 	allowNull: true
+		// },
+		// sales_item_package_unit: {
+		// 	type: DataTypes.STRING,
+		// 	allowNull: true
+		// },
+		// sales_item_costprice: {
+		// 	type: DataTypes.DECIMAL(15, 2),
+		// 	allowNull: true
+		// },

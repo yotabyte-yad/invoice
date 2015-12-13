@@ -1,4 +1,7 @@
-app.controller("createSalesInvoiceCtrl", function ($scope, $templateCache, $http){
+app.controller("createSalesInvoiceCtrl", function ($scope, $templateCache, $http, SalesInvoiceFactory){
+
+$scope.dummySalesInvoiceModel = {"items":[{"itemname":"dolo","quantity":"1","sch":false,"mfg":"","batch":"","expdate":"","price":100,"amount":""},{"itemname":"crocin","quantity":"2","sch":false,"mfg":"","batch":"","expdate":"","price":100,"amount":""},{"quantity":0,"sch":false,"mfg":"","batch":"","expdate":"","price":100,"amount":""}],"discount":"200"}
+
 
 $scope.salesInvoiceModel = {};
 
@@ -67,6 +70,10 @@ $scope.salesInvoiceModel = {};
 			return grandtotal;
 	};
 	$scope.salesinvoiceModel.netAmount = $scope.grandTotal() || 0;
+
+	$scope.saveSalesInvoice = function(){
+
+	}
 
 
 
