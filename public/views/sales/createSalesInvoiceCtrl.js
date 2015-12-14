@@ -1,14 +1,20 @@
 app.controller("createSalesInvoiceCtrl", function ($scope, $templateCache, $http, SalesInvoiceFactory){
 
-$scope.dummySalesInvoiceModel = {"items":[{"itemname":"dolo","quantity":"1","sch":false,"mfg":"","batch":"","expdate":"","price":100,"amount":""},{"itemname":"crocin","quantity":"2","sch":false,"mfg":"","batch":"","expdate":"","price":100,"amount":""},{"quantity":0,"sch":false,"mfg":"","batch":"","expdate":"","price":100,"amount":""}],
-																 "discount":"200",
-																 "date":"13/12/2015",
-																 "patient":"Test Patient",
-																 "doctor":"Test Prescribing Doctor"
+var localDate = new Date(2015, 11, 32); 
+
+$scope.dummySalesInvoiceModel = {"items":[{ "item_id":"10000000", "itemname":"dolo","quantity":"1","sch":false,"mfg":"","batch":"","expdate":"","price":100,"amount":""},
+                                          { "item_id":"10000001", "itemname":"crocin","quantity":"2","sch":false,"mfg":"","batch":"","expdate":"","price":100,"amount":""},
+                                          {"quantity":0,"sch":false,"mfg":"","batch":"","expdate":"","price":100,"amount":""}
+                                         ],
+																 "discount_amt":"200",
+																 "date": localDate.toJSON(),
+																 "buyer":"Test Patient",
+																 "doctor":"Test Prescribing Doctor",
+																 "net_amount": "6000"
 																};
 
-
-$scope.dummySalesInvoiceModel.netAmount = 6000;
+console.log(localDate.toJSON());
+$scope.dummySalesInvoiceModel.net_amount = 6000;
 $scope.salesInvoiceModel = {};
 
 	//Invoice header
@@ -44,6 +50,7 @@ $scope.salesInvoiceModel = {};
 
 		if(blank == 0){
 			$scope.salesInvoiceModel.items.push({
+	         item_id:10000000,
 	         itemname:undefined,
 	         quantity:0,
 	         sch: false,
@@ -75,7 +82,7 @@ $scope.salesInvoiceModel = {};
 			grandTotal = (($scope.totalPrice() || 0) - ($scope.salesInvoiceModel.discount || 0));
 			return grandtotal;
 	};
-	$scope.salesInvoiceModel.netAmount = $scope.grandTotal() || 0;
+	$scope.salesInvoiceModel.net_amount = $scope.grandTotal() || 0;
 
 	$scope.saveSalesInvoice = function(){
 				

@@ -365,15 +365,35 @@ app.get('/salesinvoice', function(req, res){
 //POST /salesinvoice
 //Fields in model - date, Buyer Name, Prescribing Doctor Name, Discount, Net Amount, Gross Amount
 app.post('/salesinvoice', function(req, res){
-	var salesInvoiceHeader = _.pick(req.body, 'date', 'patient', 'doctor', 'discount', 'netAmount');
-	var salesInvoiceItemDetails = _.pick(req.body, 'items');
-	console.log('salesInvoiceHeader');
+	var salesInvoice = _.pick(req.body, 'date', 'buyer', 'doctor', 'discount_amt', 'net_amount','items');
+	var salesInvoiceHeader = _.pick(req.body, 'date', 'buyer', 'doctor', 'discount_amt', 'net_amount');
+	//console.log(req.body);
+	//console.log('salesInvoiceHeader');
 	console.log(salesInvoiceHeader);
 
-	
-	
-	console.log('salesInvoiceItemDetails');
-	console.log(salesInvoiceItemDetails);
+	//console.log(typeof(salesInvoice.items));
+
+	db.sales.create(salesInvoiceHeader).then(function(header){
+		console.log(header.id);
+	}, function(e){
+		console.log('error: ', e);
+	});
+
+	salesInvoice.items.forEach(function(elem) {
+      //   if (elem.quantity != 0) {
+      //console.log('Each item', elem);
+      //   		db.suppliers.create(elem).then(function(supplier){
+						// 	res.json(supplier.toJSON());
+						// }, function(e){
+						// 	res.status(400).json(e);
+						// 	console.log(e);
+						// });
+        //}
+    });
+
+	//console.log('salesInvoiceItemDetails');
+	//console.log(salesInvoiceItemDetails.items);
+
 	
 	// db.suppliers.create(body).then(function(supplier){
 	// 	res.json(supplier.toJSON());
