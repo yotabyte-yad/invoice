@@ -369,6 +369,7 @@ app.post('/salesinvoice', function(req, res){
 	var salesInvoiceHeader = _.pick(req.body, 'date', 'buyer', 'doctor', 'discount_amt', 'net_amount');
 	var salesInvoiceItems = _.pick(req.body,'items');
 	var billNo = undefined;
+	var resBody = {};
 	//console.log(req.body);
 	//console.log('salesInvoiceHeader');
 	//console.log(salesInvoiceHeader);
@@ -376,6 +377,8 @@ app.post('/salesinvoice', function(req, res){
 	//console.log(typeof(salesInvoice.items));
 
 	db.sales.create(salesInvoiceHeader).then(function(header){
+			resBody = header;
+			console.log(resBody);
 			billNo = header.id;
 
 		salesInvoiceItems.items.forEach(function(elem) {

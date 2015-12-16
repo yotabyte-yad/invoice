@@ -79,14 +79,17 @@ $scope.salesInvoiceModel = {};
 
 	$scope.grandTotal = function(){
 			var grandtotal = 0;
-			grandTotal = (($scope.totalPrice() || 0) - ($scope.salesInvoiceModel.discount || 0));
+			grandTotal = (($scope.totalPrice() || 0) - ($scope.salesInvoiceModel.discount_amt || 0));
+			$scope.salesInvoiceModel.net_amount = $scope.grandTotal() || 0;
 			return grandtotal;
 	};
-	$scope.salesInvoiceModel.net_amount = $scope.grandTotal() || 0;
+
+	
 
 	$scope.saveSalesInvoice = function(){
 				
-		SalesInvoiceFactory.create($scope.dummySalesInvoiceModel)
+		//SalesInvoiceFactory.create($scope.dummySalesInvoiceModel)
+		SalesInvoiceFactory.create($scope.salesInvoiceModel)
 				.success(function(response){
 					toastr.success('Sales Invoice created successfully');	
 					$timeout(function(){														
