@@ -15,10 +15,11 @@
               </div> 
               <div class="col-md-2">
                 <label class="control-label" for="date"><b>Date</b></label>
-                <input type="text"
+                <input type="date"
                        class="form-control" 
                        id="date"  
-                       ng-model = "salesInvoiceModel.date">
+                       ng-model = "salesInvoiceModel.date"
+                       value="2011-01-13">
               </div> 
               <div class="col-md-4">
                 <label class="control-label" for="patient"><b>Patient Name</b></label>
@@ -107,7 +108,7 @@
                 <td class="emptyrow"></td>
                 <td class="emptyrow"></td>
                 <td style="text-align:center" class="emptyrow"><b>Grand Total</b></td>
-                <td style="text-align:center" class="emptyrow total">{{totalPrice() - salesInvoiceModel.discount}}</td> 
+                <td style="text-align:center" class="emptyrow total">{{totalPrice() - salesInvoiceModel.discount_amt}}</td> 
               </tr>       
             </tfooter>
           </table>   

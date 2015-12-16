@@ -365,31 +365,53 @@ app.get('/salesinvoice', function(req, res){
 //POST /salesinvoice
 //Fields in model - date, Buyer Name, Prescribing Doctor Name, Discount, Net Amount, Gross Amount
 app.post('/salesinvoice', function(req, res){
-	var salesInvoice = _.pick(req.body, 'date', 'buyer', 'doctor', 'discount_amt', 'net_amount','items');
+	//var salesInvoice = _.pick(req.body, 'date', 'buyer', 'doctor', 'discount_amt', 'net_amount','items');
 	var salesInvoiceHeader = _.pick(req.body, 'date', 'buyer', 'doctor', 'discount_amt', 'net_amount');
+	var salesInvoiceItems = _.pick(req.body,'items');
+	var billNo = undefined;
+	var resBody = {};
 	//console.log(req.body);
 	//console.log('salesInvoiceHeader');
-	console.log(salesInvoiceHeader);
+	//console.log(salesInvoiceHeader);
 
 	//console.log(typeof(salesInvoice.items));
 
 	db.sales.create(salesInvoiceHeader).then(function(header){
+			resBody = header;
+			console.log(resBody);
+			billNo = header.id;
+
+		salesInvoiceItems.items.forEach(function(elem) {
+        if (elem.quantity != 0) {
+        	  //elem.id = billNo;
+        	  elem.sales_id = billNo;
+      			//console.log('Each item', elem);
+      			
+      			db.sales_details.create(elem).then(function(item){
+      				consoloe.log(item);	
+      			}, function(e){
+      				res.status(400).json(e);
+      				console.log(e);
+      			});
+        }
+    });	
+
 		console.log(header.id);
 	}, function(e){
 		console.log('error: ', e);
 	});
 
-	salesInvoice.items.forEach(function(elem) {
-      //   if (elem.quantity != 0) {
-      //console.log('Each item', elem);
-      //   		db.suppliers.create(elem).then(function(supplier){
-						// 	res.json(supplier.toJSON());
-						// }, function(e){
-						// 	res.status(400).json(e);
-						// 	console.log(e);
-						// });
-        //}
-    });
+	// salesInvoiceItems.items.forEach(function(elem) {
+ //        if (elem.quantity != 0) {
+ //      console.log('Each item', elem);
+ //      //   		db.suppliers.create(elem).then(function(supplier){
+	// 					// 	res.json(supplier.toJSON());
+	// 					// }, function(e){
+	// 					// 	res.status(400).json(e);
+	// 					// 	console.log(e);
+	// 					// });
+ //        }
+ //    });
 
 	//console.log('salesInvoiceItemDetails');
 	//console.log(salesInvoiceItemDetails.items);
